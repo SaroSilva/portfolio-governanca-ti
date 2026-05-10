@@ -80,6 +80,6 @@ Criação de dashboards e indicadores estratégicos com Power BI, MS List e API 
 - Apoio à tomada de decisão.
 
 ## Autor
-> Massáro Júnio
-> www.linkedin.com/in/massáro-júnio-1025a082
-> massarojunio@gmail.com 
+- Massáro Júnio
+- www.linkedin.com/in/massáro-júnio-1025a082
+- massarojunio@gmail.com 
