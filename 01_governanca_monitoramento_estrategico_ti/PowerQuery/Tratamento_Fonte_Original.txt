@@ -1,0 +1,14 @@
+let
+    Fonte = Asana.Tables("https://app.asana.com/0/portfolio/1206602192856479/1207666487884767"),
+    Tasks1 = Fonte{[Name="Tasks"]}[Data],
+    #"Colunas Reordenadas" = Table.ReorderColumns(Tasks1,{"Tags", "Custom Fields", "Task Assignee Id", "Task Completed", "Task Completed At", "Task Created At", "Task Due At", "Task Start On", "Task Type", "Task Id", "Task Assignee Email", "Task Assignee Name", "Task Section Id", "Task Section Name", "Task Modified At", "Task Name", "Task Number Of Likes", "Task Actual Time Minutes", "Project Current Status Color", "Project Current Status Text", "Project Current Status Posted On", "Project Current Status Posted By", "Project Data Archived", "Project Id", "Project Color", "Project Created At", "Project Modified At", "Project Name", "Project Notes", "Project Owner Name", "Project Public", "Project Due On", "Project Start On", "Project Custom Fields", "Workspace Name", "Team Name"}),
+    #"Project Custom Fields Expandido" = Table.ExpandListColumn(#"Colunas Reordenadas", "Project Custom Fields"),
+    #"Project Custom Fields Expandido1" = Table.ExpandRecordColumn(#"Project Custom Fields Expandido", "Project Custom Fields", {"name", "value"}, {"Project Custom Fields.name", "Project Custom Fields.value"}),
+    #"Remover Dados Nulos" = Table.SelectRows(#"Project Custom Fields Expandido1", each [Project Custom Fields.name] <> null and [Project Custom Fields.name] <> ""),
+    #"Manter Col. Relacionadas aos Projetos e Portifolios" = Table.SelectColumns(#"Remover Dados Nulos",{"Project Custom Fields.name", "Project Custom Fields.value", "Project Current Status Color", "Project Current Status Text", "Project Current Status Posted On", "Project Current Status Posted By", "Project Data Archived", "Project Id", "Project Color", "Project Created At", "Project Modified At", "Project Name", "Project Notes", "Project Owner Name", "Project Public", "Project Due On", "Project Start On", "Workspace Name", "Team Name","Task Id", "Task Name", "Task Section Id", "Task Section Name", "Task Assignee Id", "Task Assignee Name", "Task Completed", "Task Created At", "Task Completed At", "Task Start On", "Task Due At"}),
+    #"Remover Dados Nulos 2" = Table.SelectRows(#"Manter Col. Relacionadas aos Projetos e Portifolios", each [Project Custom Fields.name] <> null and [Project Custom Fields.name] <> ""),
+    #"Pivot Categorias Portifolio" = Table.Pivot(#"Remover Dados Nulos 2", List.Distinct(#"Remover Dados Nulos 2"[#"Project Custom Fields.name"]), "Project Custom Fields.name", "Project Custom Fields.value"),
+    #"Adc. Col. sobre Fonte dos Dados" = Table.AddColumn(#"Pivot Categorias Portifolio", "Portifólio", each "Pipeline"),
+    #"Mod. Col. ID Projetos & Task" = Table.TransformColumnTypes(#"Adc. Col. sobre Fonte dos Dados",{{"Project Id", Int64.Type}, {"Task Id", Int64.Type}, {"Task Assignee Id", Int64.Type}, {"Task Section Id", Int64.Type}})
+in
+    #"Mod. Col. ID Projetos & Task"
