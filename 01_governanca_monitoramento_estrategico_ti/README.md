@@ -15,7 +15,6 @@ Criação de dashboards e indicadores estratégicos com Power BI, MS List e API 
   - Qtde. Task No Prazo por Projeto
   - Qtde. Tasks Previstas e Fechadas na Mesma Competência
   - Qtde. Task No Prazo por Analista
-  - 
 - MAP - Projects Timeline
   - Projeção Projetos a partir da reunião kick-off
   - Projeção Finalização dos Projetos
