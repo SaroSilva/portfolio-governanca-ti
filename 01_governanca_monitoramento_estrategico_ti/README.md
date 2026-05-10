@@ -59,7 +59,7 @@ Criação de dashboards e indicadores estratégicos com Power BI, MS List e API 
 
 - `data/`: bases de dados
 - `docs/`: documentação executiva
-- `sql/`: scripts Power Query
+- `PoqerQuery/`: scripts Power Query
 - `powerbi/`: dashboards
 - `images/`: imagens do dashboard
 
