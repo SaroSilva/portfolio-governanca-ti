@@ -1,0 +1,27 @@
+let
+    Fonte = SharePoint.Tables("https://rhpcsp-my.sharepoint.com/personal/31479_rhp_com_br/", [Implementation="2.0", ViewMode="All"]),
+    #"df0154b4-958a-47cb-b640-270e05e7856c" = Fonte{[Id="df0154b4-958a-47cb-b640-270e05e7856c"]}[Items],
+    #"Responsável Expandido" = Table.ExpandListColumn(#"df0154b4-958a-47cb-b640-270e05e7856c", "Responsável"),
+    #"Criado por Expandido" = Table.ExpandListColumn(#"Responsável Expandido", "Criado por"),
+    #"Criado por Expandido1" = Table.ExpandRecordColumn(#"Criado por Expandido", "Criado por", {"title", "email"}, {"Criado por.title", "Criado por.email"}),
+    #"Colunas Removidas" = Table.RemoveColumns(#"Criado por Expandido1",{"Configuração do rótulo", "Rótulo de retenção", "Rótulo de retenção Aplicado", "Rótulo aplicado por", "O item é um Registro", "Editar", "Anexos", "Contagem de Itens Filhos", "Contagem de Elementos Filho da Pasta", "Aplicativo Modificado por", "Pressione Delete para excluir o ícone.", "ID de Ativo de Conformidade", "Tipo de Conteúdo", "Tipo"}),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Colunas Removidas",{{"Resumo do Risco", type text}, {"Descrição do Risco", type text}, {"Data de Identificação", type datetime}, {"Projeto", type text}, {"Tipo do Risco", type text}, {"Categoria", type text}, {"Causa Raiz", type text}, {"Efeito", type text}, {"Probabilidade", type text}, {"Impacto", type text}, {"Estratégia de Resposta ao Risco", type text}, {"Plano de Contigência", type text}, {"Prioridade", type text}, {"Responsável", type text}, {"Status do Risco", type text}, {"Prazo para Resolução", type datetime}, {"Data da Resolução", type datetime}, {"Risco Resolvido no Prazo", type text}, {"ID", Int64.Type}, {"Modificado", type datetime}, {"Criado", type datetime}, {"Criado por.title", type text}, {"Criado por.email", type text}, {"Modificado por", type any}, {"Versão", Int64.Type}, {"Aplicativo Criado por", type text}}),
+    #"Mod. Col. Posição - Datas" = Table.ReorderColumns(#"Tipo Alterado",{"Resumo do Risco", "Descrição do Risco", "Projeto", "Tipo do Risco", "Categoria", "Causa Raiz", "Efeito", "Probabilidade", "Impacto", "Estratégia de Resposta ao Risco", "Plano de Contigência", "Prioridade", "Responsável", "Status do Risco", "Risco Resolvido no Prazo", "ID", "Modificado", "Criado", "Criado por.title", "Criado por.email", "Modificado por", "Versão", "Aplicativo Criado por", "Data de Identificação", "Prazo para Resolução", "Data da Resolução"}),
+    #"Mod. Col. Datas" = Table.TransformColumnTypes(#"Mod. Col. Posição - Datas",{{"Data de Identificação", type date}, {"Prazo para Resolução", type date}, {"Data da Resolução", type date}}),
+    #"Adc. Col. Classificação Diária" = Table.AddColumn(#"Mod. Col. Datas", "Classificação Diária", each 
+        if [#"Data da Resolução"] = null and [#"Prazo para Resolução"] = null then "Indefinido"
+        else if [#"Data da Resolução"] <> null and [#"Data da Resolução"] <= [#"Prazo para Resolução"] then "Concluído no Prazo" 
+        else if [#"Data da Resolução"] <> null and [#"Data da Resolução"] > [#"Prazo para Resolução"] then "Concluído Fora do Prazo" 
+        else if [#"Prazo para Resolução"] <> null and Date.From(DateTime.LocalNow()) <= [#"Prazo para Resolução"] then "Em Dia"
+        else if [#"Prazo para Resolução"] <> null and Date.From(DateTime.LocalNow()) > [#"Prazo para Resolução"] then "Atrasado"
+        else "Não Mapeado"),
+    #"Adc. Col. Ponto Diário" = Table.AddColumn(#"Adc. Col. Classificação Diária", "Ponto Diário", each 
+        if [#"Data da Resolução"] = null and [#"Prazo para Resolução"] = null then 0
+        else if [#"Data da Resolução"] <> null and [#"Data da Resolução"] <= [#"Prazo para Resolução"] then 1
+        else if [#"Data da Resolução"] <> null and [#"Data da Resolução"] > [#"Prazo para Resolução"] then 0 
+        else if [#"Prazo para Resolução"] <> null and Date.From(DateTime.LocalNow()) <= [#"Prazo para Resolução"] then 0
+        else if [#"Prazo para Resolução"] <> null and Date.From(DateTime.LocalNow()) > [#"Prazo para Resolução"] then 0
+        else "Não Mapeado"),
+    #"Frente de Trabalho Expandido" = Table.ExpandListColumn(#"Adc. Col. Ponto Diário", "Frente de Trabalho")
+in
+    #"Frente de Trabalho Expandido"
