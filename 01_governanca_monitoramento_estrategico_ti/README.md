@@ -70,7 +70,7 @@ Criação de dashboards e indicadores estratégicos com Power BI, MS List e API 
 
 ## Dashboard
 
-![MAP - Controle dos Projetos](images/)
+![Monitoramento de Atividade em Projetos - MAP](images/)
 
 ## Resultados Obtidos
 
