@@ -1,0 +1,141 @@
+let
+    Fonte = Table.Combine({F_Projetos_Principais, F_Projetos_Backlog, F_Projetos_Pausados,F_Projetos_Priorizados}),
+    #"Mod. Tipo Col. Datas" = Table.TransformColumnTypes(Fonte,{{"Project Created At", type datetime}, {"Project Modified At", type datetime}, {"Project Due On", type date}, {"Project Start On", type date}, {"Task Created At", type datetime}, {"Task Completed At", type datetime}, {"Task Start On", type datetime}, {"Task Due At", type datetime}, {" Prazo para Entrega ", type date}}),
+    #"Adc. Status Name" = Table.AddColumn(#"Mod. Tipo Col. Datas", "Status Name", each 
+        if [Project Current Status Color] = "green" then "Em Dia" 
+        else if [Project Current Status Color] = "blue" then "Em Espera" 
+        else if [Project Current Status Color] = "red" then "Em Atraso" 
+        else if [Project Current Status Color] = "yellow" then "Em Risco" 
+        else if [Project Current Status Color] = "complete" then "Concluido" 
+        else "Sem atualização recente"),
+    #"Adc. Link Projeto" = Table.AddColumn(#"Adc. Status Name", "ProjectLink", each Text.Combine({"https://app.asana.com/0/", Text.From([Project Id]), "/", Text.From([Project Id])})),
+    #"Adc. Link Tarefa" = Table.AddColumn(#"Adc. Link Projeto", "TaskLink", each Text.Combine({"https://app.asana.com/0/", Text.From([Project Id]), "/", Text.From([Task Id])})),
+    #"Adc. Equipe STI" = Table.AddColumn(#"Adc. Link Tarefa", "GRUPO ANALISTAS TASKS", each 
+/*Geraldo Batista*/                         if [Task Assignee Id] = 1201822071972279 then "PMO" else
+/*Edilson Costa*/                           if [Task Assignee Id] = 1205233743550527 then "PMO" else
+/*Ana Maria Figueiredo*/                    if [Task Assignee Id] = 1208948352600787 then "PMO" else
+/*Joice Lima*/                              if [Task Assignee Id] = 1208111748359712 then "PMO" else
+/*Paulo Medina*/                            if [Task Assignee Id] = 1210381985909611 then "PMO" else
+/*Mirela Vasconcelos*/                      if [Task Assignee Id] = 1211399551851179 then "PMO" else
+/*MiMickaio Silva*/                         if [Task Assignee Id] = 1213401043999273 then "PMO" else
+
+/*Márcia Lima*/                             if [Task Assignee Id] = 1201837983841260 then "Administrativo" else
+/*Silas Rodrigues*/                         if [Task Assignee Id] = 1202248640699221 then "Administrativo" else
+/*Valdênia Melo*/                           if [Task Assignee Id] = 1201839457541360 then "Administrativo" else
+/*Thyago Travassos*/                        if [Task Assignee Id] = 1206824291950782 then "Administrativo" else
+/*Renata Lima*/                             if [Task Assignee Id] = 1202729725989572 then "Administrativo" else
+/*Vinícius Litwak*/                         if [Task Assignee Id] = 1205213572370590 then "Administrativo" else
+/*Mayara Souza*/                            if [Task Assignee Id] = 1207990966566981 then "Administrativo" else
+/*Paulo Henrique*/                          if [Task Assignee Id] = 1203170636314232 then "Administrativo" else
+/*Alder Wesley*/                            if [Task Assignee Id] = 1205751604007912 then "Administrativo" else
+/*Celso Cunha*/                             if [Task Assignee Id] = 1210948767750354 then "Administrativo" else
+/*Marcelo Valdemar*/                        if [Task Assignee Id] = 1210936998290912 then "Administrativo" else
+
+/*Ana Paula*/                               if [Task Assignee Id] = 1201822072317107 then "Sustentação" else
+/*henrique siqueira*/                       if [Task Assignee Id] = 1207847124991681 then "Sustentação" else
+
+/*Clécia Souza*/                            if [Task Assignee Id] = 1201728774936159 then "Assistencial" else
+/*Vinícius França*/                         if [Task Assignee Id] = 1201845303169915 then "Assistencial" else
+/*Ingrid Gouveia*/                          if [Task Assignee Id] = 1206795696350341 then "Assistencial" else
+
+/*Roger Araújo*/                            if [Task Assignee Id] = 854158410510145  then "Dev Analytcs" else
+/*Marclyson*/                               if [Task Assignee Id] = 1207288082282369 then "Dev Analytcs" else
+/*Geovanna Melo*/                           if [Task Assignee Id] = 1204771660730165 then "Dev Analytcs" else
+/*Massáro Júnio*/                           if [Task Assignee Id] = 1203458407420904 then "Dev Analytcs" else
+/*robson.rodrigues@rhp.com.br*/             if [Task Assignee Id] = 1206668685407571 then "Dev Analytcs" else
+/*robson.rodrigues@rhp.com.br*/             if [Task Assignee Id] = 1207872690301474 then "Dev Analytcs" else
+/*deivson.santos@rhp.com.br*/               if [Task Assignee Id] = 1204530787760210 then "Dev Analytcs" else
+/*Gabriel Pereira*/                         if [Task Assignee Id] = 854157907415037  then "Dev Analytcs" else
+/*MILTON ANDRADE DA SILVA*/                 if [Task Assignee Id] = 1208169205410662 then "Dev Analytcs" else
+/*Kaio Calas*/                              if [Task Assignee Id] = 1208402203152969 then "Dev Analytcs" else
+/*cristina.soares@rhp.com.br*/              if [Task Assignee Id] = 1207914205173270 then "Dev Analytcs" else
+/*andra.andrade@tascomtecnologia.com.br*/   if [Task Assignee Id] = 1205758471882893 then "Dev Analytcs" else
+/*Vinicius Rocha Maciel*/                   if [Task Assignee Id] = 1211825263935535 then "Dev Analytcs" else
+
+/*Ademir Novais*/                           if [Task Assignee Id] = 889117987021133  then "Estratégico" else
+/*Bartolomeu Jose Araujo Martins Junior*/   if [Task Assignee Id] = 1206011206230683 then "Estratégico" else
+/*Estevam Alves*/                           if [Task Assignee Id] = 1202099646503093 then "Estratégico" else
+/*Rosangela Costa*/                         if [Task Assignee Id] = 1202473027654446 then "Estratégico" else
+/*Shirley Geisa de Oliveira*/               if [Task Assignee Id] = 1202125962195874 then "Estratégico" else
+/*Valdeck Jr*/                              if [Task Assignee Id] = 1201822072098639 then "Estratégico" else
+/*Elison Viegas*/                           if [Task Assignee Id] = 1206203581727523 then "Estratégico" else
+/*Emerson Lira*/                            if [Task Assignee Id] = 1203133835184289 then "Estratégico" else
+/*Emmanuel Morais*/                         if [Task Assignee Id] = 1203827470130505 then "Estratégico" else
+/*João Daniel Junqueira da Silva Júnior*/   if [Task Assignee Id] = 1205204587680968 then "Estratégico" else
+/*Leonardo Lima*/                           if [Task Assignee Id] = 1203133469429921 then "Estratégico" else
+/*guilherme.freitas@rhp.com.br*/            if [Task Assignee Id] = 1207238511858106 then "Estratégico" else
+/*Daur*/                                    if [Task Assignee Id] = 1208252484587621 then "Estratégico" else
+
+/*Diego Melo*/                              if [Task Assignee Id] = 1202779966875522 then "Infraestrutura" else
+/*Fabio Barbosa*/                           if [Task Assignee Id] = 1201844464494968 then "Infraestrutura" else
+/*Eugênio Teixeira*/                        if [Task Assignee Id] = 1203386358652650 then "Infraestrutura" else
+/*Railton Marinho de Albuquerque Luz*/      if [Task Assignee Id] = 1203361924112319 then "Infraestrutura" else
+/*Railton Marinho de Albuquerque Luz*/      if [Task Assignee Id] = 1208816396529456 then "Infraestrutura" else
+/*Adalto Amaral*/                           if [Task Assignee Id] = 1207675794500155 then "Infraestrutura" else
+/*Renato Santana*/                          if [Task Assignee Id] = 1204777723271204 then "Infraestrutura" else
+
+/*Diego Aguiar*/                            if [Task Assignee Id] = 1203601224746406 then "SI" else
+/*Hyago Felipe Morais da Silva*/            if [Task Assignee Id] = 1206897188677335 then "SI" else
+/*Pedro Borba*/                             if [Task Assignee Id] = 1208872129486634 then "SI" 
+
+/*MEMBROS EXTERNOS DO STI*/                 else "Sem Equipe"
+    ),
+    #"Duplicar Col. Final Tarefa" = Table.DuplicateColumn(#"Adc. Equipe STI", "Task Due At", "DT_INTEGRAÇÃO"),
+    #"Converter Dt_Integração" = Table.TransformColumnTypes(#"Duplicar Col. Final Tarefa",{{"DT_INTEGRAÇÃO", type date}}),
+    #"Mod. Col. Dt Tarefas" = Table.RenameColumns(#"Converter Dt_Integração",{{"Task Completed At", "DH_CONCLUSÃO"}, {"Task Created At", "DH_CRIAÇÃO"}, {"Task Due At", "DH_PRAZO_FIM"}, {"Task Start On", "DH_PRAZO_IN"}}),
+    #"Adc. Data Conclusão" = Table.DuplicateColumn(#"Mod. Col. Dt Tarefas", "DH_CONCLUSÃO", "DT_Conclusão_Task"),
+    #"Adc. Data Criação" = Table.DuplicateColumn(#"Adc. Data Conclusão", "DH_CRIAÇÃO", "DT_Criação_Task"),
+    #"Adc. Data Prazo" = Table.DuplicateColumn(#"Adc. Data Criação", "DH_PRAZO_FIM", "DT_Prazo_Task"),
+    #"Trunca Datas Acima" = Table.TransformColumnTypes(#"Adc. Data Prazo",{{"DT_Criação_Task", type date}, {"DT_Prazo_Task", type date}, {"DT_Conclusão_Task", type date}}),
+    #"Adc. Classificacao Task Mensal" = Table.AddColumn( #"Trunca Datas Acima", "Classificacao Task Mensal", each
+        if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) = Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] < [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) = Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] = [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) = Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] >= DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) = Date.Month(DateTime.LocalNow()) then "NO PRAZO"
+        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] < [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) <> Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] >= DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) <> Date.Month(DateTime.LocalNow()) then "NO PRAZO"
+        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) <> Date.Month([DT_Conclusão_Task]) then "CONCLUIDO COM ATRASO"
+        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) <> Date.Month(DateTime.LocalNow()) then "ATRASADO"
+        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) <= Date.Month(DateTime.LocalNow()) then "ATRASADO"
+        else if [DT_Conclusão_Task] <> null and [DT_Criação_Task] <> null then "CONCLUSÃO SEM PLANEJAMENTO"
+        else "SEM DATA DE PREVISÃO E DATA DE CONCLUSÃO"
+    ),
+    #"Adc. Classificacao Task Diária" = Table.AddColumn( #"Adc. Classificacao Task Mensal", "Classificacao Task Diária", each
+        if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] < [DT_Prazo_Task] and [DT_Criação_Task] < [DT_Prazo_Task] then "CONCLUÍDO ANTES DO PRAZO"
+        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and [DT_Criação_Task] < [DT_Prazo_Task] then "CONCLUÍDO COM ATRASO"
+        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and [DT_Criação_Task] = [DT_Prazo_Task] then "CONCLUÍDO COM ATRASO"
+        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] then "CONCLUÍDO COM ATRASO"
+        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] = [DT_Prazo_Task] and [DT_Criação_Task] = [DT_Prazo_Task] then "CONCLUÍDO NO PRAZO"
+        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] = [DT_Prazo_Task] and [DT_Criação_Task] < [DT_Prazo_Task] then "CONCLUÍDO NO PRAZO"
+        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] >= DateTime.Date(DateTime.LocalNow()) and [DT_Criação_Task] <= [DT_Prazo_Task] then "CONCLUÍDO NO PRAZO"
+        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] = null and [DT_Criação_Task] <> null and [DT_Criação_Task] > DateTime.Date(DateTime.LocalNow()) then "SEM PLANEJAMENTO"
+        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Criação_Task] <> null and [DT_Criação_Task] > [DT_Prazo_Task] then "EM ATRASO"
+        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Criação_Task] <> null and [DT_Criação_Task] = [DT_Prazo_Task] then "EM ATRASO"
+        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) then "EM ATRASO"
+        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Criação_Task] <> null and [DT_Criação_Task] < [DT_Prazo_Task] then "EM DIA"
+        else if [DT_Conclusão_Task] <> null and [DT_Criação_Task] <> null then "CONCLUSÃO SEM PLANEJAMENTO"
+        else "SEM DATA DE PREVISÃO E DATA DE CONCLUSÃO"
+    ),
+    #"Adc. Tag Auditoria" = Table.AddColumn(#"Adc. Classificacao Task Diária", "Tag Auditoria", each 
+        if [DT_Criação_Task] > [DT_Prazo_Task] and [DT_Prazo_Task] <> null then "CRIAÇÃO RETROATIVO" 
+        else if [DT_Criação_Task] < [DT_Prazo_Task] and [DT_Prazo_Task] <> null then "CRIAÇÃO PLANEJADA" else null),
+    #"Adc. Task Status Conclusão" = Table.AddColumn(#"Adc. Tag Auditoria", "Task Status", each if [DH_CONCLUSÃO] <> null then "Concluido" else "Pendente"),
+    #"Adc. Task Status Prazo" = Table.AddColumn(#"Adc. Task Status Conclusão", "Task Due At Status", each 
+    if [DT_Prazo_Task] = null and [Task Status] = "Pendente" then "Sem Prazo"
+    else if [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) and [Task Status] = "Pendente" then "Atrasado"
+    else if [DT_Prazo_Task] >= DateTime.Date(DateTime.LocalNow()) and [Task Status] = "Pendente" then "No Prazo"
+    else "Concluída"),
+    #"Erros Substituídos" = Table.ReplaceErrorValues(#"Adc. Task Status Prazo", {{"Classificacao Task Mensal", ""}}),
+    #"Erros Substituídos1" = Table.ReplaceErrorValues(#"Erros Substituídos", {{"Classificacao Task Diária", ""}}),
+    #"Mod. Col. Prazo para Entrega" = Table.TransformColumnTypes(#"Erros Substituídos1",{{" Prazo para Entrega ", type date}}),
+    #"Adc. Col. Pts Status Metod." = Table.AddColumn(#"Mod. Col. Prazo para Entrega", "Pts Metodologia", each if [#"1 - TAP"] = "Concluído no Prazo" and [#"2 - DEP"] = "Concluído no Prazo" and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo" then 3
+    else if [#"1 - TAP"] = "Concluído no Prazo"     and [#"2 - DEP"] = "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] <> "Concluído no Prazo"  then 2
+    else if [#"1 - TAP"] = "Concluído no Prazo"     and [#"2 - DEP"] <> "Concluído no Prazo"    and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo"   then 2
+    else if [#"1 - TAP"] <> "Concluído no Prazo"    and [#"2 - DEP"] = "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo"   then 2
+    else if [#"1 - TAP"] = "Concluído no Prazo"     and [#"2 - DEP"] <> "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] <> "Concluído no Prazo"  then 1
+    else if [#"1 - TAP"] <> "Concluído no Prazo"    and [#"2 - DEP"] <> "Concluído no Prazo"    and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo"   then 1
+    else if [#"1 - TAP"] <> "Concluído no Prazo"    and [#"2 - DEP"] = "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] <> "Concluído no Prazo"   then 1
+    else 0),
+    #"Adc. Dt. Atualização" = Table.AddColumn(#"Adc. Col. Pts Status Metod.", "DT_ATUALIZAR", each DateTime.LocalNow())
+in
+    #"Adc. Dt. Atualização"
