@@ -49,3 +49,11 @@ Cada fonte de dados possui um fluxo específico de captura e integração, conve
 
 ![Dashboard](images/dashboard_overview.png)
 
+## Autor
+- Massáro Júnio
+- www.linkedin.com/in/massáro-júnio-1025a082
+- massarojunio@gmail.com
+
+##Equipe Colaborativa
+- RPA - Vinicius Maciel (https://www.linkedin.com/in/viniciusrochamaciel/)
+- API - Robson Alcantará (https://www.linkedin.com/in/robson-de-alcantara-rodrigues/)
