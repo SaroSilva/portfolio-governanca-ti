@@ -1,0 +1,9 @@
+flowchart TD
+    A[Captura automatizada via RPA] --> B[Estruturação em JSON]
+    B --> C[Carga no Oracle Produção]
+    C --> D[Consulta SQL na tabela de staging]
+    D --> E[Transformações e padronização]
+    E --> F[CTEs e regras de negócio]
+    F --> G[Power BI conectado ao Oracle via TNS]
+    G --> H[Importação da consulta final]
+    H --> I[Construção dos indicadores]
