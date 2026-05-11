@@ -1,0 +1,8 @@
+flowchart TD
+    A[API via Sensidia] --> B[Recebimento no Oracle Produção]
+    B --> C[Consulta SQL na tabela RHPLEITURA.DES_QUALYT24]
+    C --> D[Transformações e padronização]
+    D --> E[CTEs e regras de negócio]
+    E --> F[Power BI conectado ao Oracle via TNS]
+    F --> G[Importação da consulta final]
+    G --> H[Construção dos indicadores]
