@@ -1,0 +1,10 @@
+flowchart LR
+    A[NPS] --> E[Oracle Produção]
+    B[Google Reviews] --> E
+    C[CSAT] --> E
+    D[Reclame Aqui] --> E
+    E --> F[Consultas SQL e CTEs]
+    F --> G[Power Query]
+    G --> H[Modelo Analítico Power BI]
+    H --> I[Dashboard Voz do Cliente 360º]
+    I --> J[Tomada de Decisão Executiva]
