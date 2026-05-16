@@ -1,0 +1,172 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/report/3.2.0/schema.json",
+  "themeCollection": {
+    "baseTheme": {
+      "name": "CY22SU03",
+      "reportVersionAtImport": {
+        "visual": "1.8.68",
+        "report": "2.0.68",
+        "page": "1.3.68"
+      },
+      "type": "SharedResources"
+    },
+    "customTheme": {
+      "name": "Forest_Breeze9526495376246292.json",
+      "reportVersionAtImport": {
+        "visual": "2.1.0",
+        "report": "2.1.0",
+        "page": "2.0.0"
+      },
+      "type": "RegisteredResources"
+    }
+  },
+  "objects": {
+    "section": [
+      {
+        "properties": {
+          "verticalAlignment": {
+            "expr": {
+              "Literal": {
+                "Value": "'Top'"
+              }
+            }
+          }
+        }
+      }
+    ],
+    "outspacePane": [
+      {
+        "properties": {
+          "expanded": {
+            "expr": {
+              "Literal": {
+                "Value": "true"
+              }
+            }
+          },
+          "visible": {
+            "expr": {
+              "Literal": {
+                "Value": "false"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "publicCustomVisuals": [
+    "advancedtoggleswitch",
+    "BarChartF5983CEA542C47889C9DE852B430DE5F",
+    "bciCalendarCC0FA2BFE4B54EE1ACCFE383B9B1DE61",
+    "enlightenStackShuffle33EDB050C2424C618953642FFC0B291A",
+    "FacetKey1642434105454",
+    "HierarchySlicer1458836712039",
+    "horizontalBarChartPBICraft",
+    "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F",
+    "PBI_CV_7B952816_A48F_49B4_9E13_15E3BB2C0337",
+    "textSearchSlicerF85E2E78BE4A4D7D9F99ED75B5D71C85"
+  ],
+  "resourcePackages": [
+    {
+      "name": "advancedtoggleswitch",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "advancedtoggleswitch.pbiviz.json",
+          "path": "advancedtoggleswitch.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "bciCalendarCC0FA2BFE4B54EE1ACCFE383B9B1DE61",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "bciCalendarCC0FA2BFE4B54EE1ACCFE383B9B1DE61.pbiviz.json",
+          "path": "bciCalendarCC0FA2BFE4B54EE1ACCFE383B9B1DE61.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F.pbiviz.json",
+          "path": "payPalKPIDonutChart55A431AB15A540ED924ACD72ED8D259F.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "PBI_CV_7B952816_A48F_49B4_9E13_15E3BB2C0337",
+      "type": "CustomVisual",
+      "items": [
+        {
+          "name": "PBI_CV_7B952816_A48F_49B4_9E13_15E3BB2C0337.pbiviz.json",
+          "path": "PBI_CV_7B952816_A48F_49B4_9E13_15E3BB2C0337.pbiviz.json",
+          "type": "CustomVisualMetadata"
+        }
+      ]
+    },
+    {
+      "name": "RegisteredResources",
+      "type": "RegisteredResources",
+      "items": [
+        {
+          "name": "Forest_Breeze9526495376246292.json",
+          "path": "Forest_Breeze9526495376246292.json",
+          "type": "Image"
+        },
+        {
+          "name": "RHP_Logotipo_Finalizado_15196008597200961.png",
+          "path": "RHP_Logotipo_Finalizado_15196008597200961.png",
+          "type": "Image"
+        },
+        {
+          "name": "Tela_1_-_Template13865387702536303.svg",
+          "path": "Tela_1_-_Template13865387702536303.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tela_1_-_Template3709629322336644.svg",
+          "path": "Tela_1_-_Template3709629322336644.svg",
+          "type": "Image"
+        },
+        {
+          "name": "Tela_5_-_Template8628007838588007.svg",
+          "path": "Tela_5_-_Template8628007838588007.svg",
+          "type": "Image"
+        }
+      ]
+    },
+    {
+      "name": "SharedResources",
+      "type": "SharedResources",
+      "items": [
+        {
+          "name": "CY22SU03",
+          "path": "BaseThemes/CY22SU03.json",
+          "type": "BaseTheme"
+        }
+      ]
+    }
+  ],
+  "settings": {
+    "useStylableVisualContainerHeader": true,
+    "exportDataMode": "AllowSummarized",
+    "defaultDrillFilterOtherVisuals": true,
+    "allowChangeFilterTypes": true,
+    "useEnhancedTooltips": true
+  },
+  "slowDataSourceSettings": {
+    "isCrossHighlightingDisabled": false,
+    "isSlicerSelectionsButtonEnabled": false,
+    "isFilterSelectionsButtonEnabled": false,
+    "isFieldWellButtonEnabled": false,
+    "isApplyAllButtonEnabled": false
+  }
+}
