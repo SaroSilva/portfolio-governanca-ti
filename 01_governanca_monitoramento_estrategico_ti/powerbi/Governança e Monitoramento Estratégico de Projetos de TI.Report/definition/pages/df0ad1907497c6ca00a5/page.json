@@ -1,0 +1,10 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "df0ad1907497c6ca00a5",
+  "displayName": "% Fechadas Mesmo Dia PMO",
+  "displayOption": "FitToPage",
+  "height": 85,
+  "width": 190,
+  "visibility": "HiddenInViewMode",
+  "type": "Tooltip"
+}
