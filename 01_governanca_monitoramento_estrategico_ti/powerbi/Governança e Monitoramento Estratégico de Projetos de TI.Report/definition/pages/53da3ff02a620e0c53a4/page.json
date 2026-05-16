@@ -1,0 +1,9 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "53da3ff02a620e0c53a4",
+  "displayName": "Auditoria",
+  "displayOption": "FitToPage",
+  "height": 800,
+  "width": 1420,
+  "visibility": "HiddenInViewMode"
+}

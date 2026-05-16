@@ -1,0 +1,195 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "8c9d83e356015b9015a0",
+  "displayName": "MAP - Controle dos Projetos Externos",
+  "displayOption": "FitToPage",
+  "height": 800,
+  "width": 1420,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "6b79881b0a20923050b9",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "F_Asana_Unificado"
+              }
+            },
+            "Property": "GRUPO ANALISTAS TASKS"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "F_Asana_Unificado",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "GRUPO ANALISTAS TASKS"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Sem Equipe'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      },
+      {
+        "name": "af28035fb7795bf7f4d7",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "F_Asana_Unificado"
+              }
+            },
+            "Property": "Portifólio"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "F_Asana_Unificado",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Portifólio"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Pipeline'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Tela 5 - Template.svg'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Tela_5_-_Template8628007838588007.svg"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visibility": "HiddenInViewMode",
+  "visualInteractions": [
+    {
+      "source": "f84d01eb458702577c34",
+      "target": "1d6dd3f0b637e16e76e3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f84d01eb458702577c34",
+      "target": "3e398322332da7cadc28",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1d6dd3f0b637e16e76e3",
+      "target": "f84d01eb458702577c34",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1d6dd3f0b637e16e76e3",
+      "target": "3e398322332da7cadc28",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3e398322332da7cadc28",
+      "target": "1d6dd3f0b637e16e76e3",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3e398322332da7cadc28",
+      "target": "f84d01eb458702577c34",
+      "type": "DataFilter"
+    }
+  ]
+}

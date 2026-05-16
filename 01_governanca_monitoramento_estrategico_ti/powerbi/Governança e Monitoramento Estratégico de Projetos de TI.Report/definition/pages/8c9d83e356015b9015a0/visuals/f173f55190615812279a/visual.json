@@ -1,0 +1,16 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/visualContainer/2.8.0/schema.json",
+  "name": "f173f55190615812279a",
+  "position": {
+    "x": 136,
+    "y": 192,
+    "z": 10000,
+    "height": 400,
+    "width": 432,
+    "tabOrder": 12000
+  },
+  "visualGroup": {
+    "displayName": "Por Projetos",
+    "groupMode": "ScaleMode"
+  }
+}

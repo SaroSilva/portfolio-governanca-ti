@@ -1,0 +1,205 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "2956a84442e3e6ec6247",
+  "displayName": "MAP - Controle dos Projetos",
+  "displayOption": "FitToPage",
+  "height": 800,
+  "width": 1420,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "d9d06ffd1a185ad6a786",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "F_Asana_Unificado"
+              }
+            },
+            "Property": "Portifólio"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "F_Asana_Unificado",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Portifólio"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Pipeline'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Tela 5 - Template.svg'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Tela_5_-_Template8628007838588007.svg"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "54c123ca4729e99abb03",
+      "target": "7410fe228ae535a00139",
+      "type": "DataFilter"
+    },
+    {
+      "source": "54c123ca4729e99abb03",
+      "target": "8341688c3d11b46e1d26",
+      "type": "DataFilter"
+    },
+    {
+      "source": "54c123ca4729e99abb03",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "7410fe228ae535a00139",
+      "target": "54c123ca4729e99abb03",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7410fe228ae535a00139",
+      "target": "8341688c3d11b46e1d26",
+      "type": "DataFilter"
+    },
+    {
+      "source": "7410fe228ae535a00139",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "8341688c3d11b46e1d26",
+      "target": "7410fe228ae535a00139",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8341688c3d11b46e1d26",
+      "target": "54c123ca4729e99abb03",
+      "type": "DataFilter"
+    },
+    {
+      "source": "8341688c3d11b46e1d26",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "89a6fb863e2c0a50b0e1",
+      "target": "8341688c3d11b46e1d26",
+      "type": "DataFilter"
+    },
+    {
+      "source": "89a6fb863e2c0a50b0e1",
+      "target": "7410fe228ae535a00139",
+      "type": "DataFilter"
+    },
+    {
+      "source": "89a6fb863e2c0a50b0e1",
+      "target": "54c123ca4729e99abb03",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3010eed0c006d010d61e",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "DataFilter"
+    },
+    {
+      "source": "0d8c457b46a368b03b65",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ecf4a2110a87ad3606b5",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "86a69f0dd97063a6882c",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "d3dd76f710449022e370",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "2f09d719c220006e7a92",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    },
+    {
+      "source": "3436a51f442ccba000a3",
+      "target": "89a6fb863e2c0a50b0e1",
+      "type": "NoFilter"
+    }
+  ]
+}

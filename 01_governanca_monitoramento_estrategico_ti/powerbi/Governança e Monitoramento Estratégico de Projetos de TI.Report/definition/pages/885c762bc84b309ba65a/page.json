@@ -1,0 +1,279 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "885c762bc84b309ba65a",
+  "displayName": "MAP - Matriz Risco PMO Tech",
+  "displayOption": "FitToPage",
+  "height": 800,
+  "width": 1420,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "dada84d9ecd490653896",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "STI - PMO | Matriz de Riscos"
+              }
+            },
+            "Property": "Risco Resolvido no Prazo"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "s",
+              "Entity": "STI - PMO | Matriz de Riscos",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "Not": {
+                  "Expression": {
+                    "In": {
+                      "Expressions": [
+                        {
+                          "Column": {
+                            "Expression": {
+                              "SourceRef": {
+                                "Source": "s"
+                              }
+                            },
+                            "Property": "Risco Resolvido no Prazo"
+                          }
+                        }
+                      ],
+                      "Values": [
+                        [
+                          {
+                            "Literal": {
+                              "Value": "'Cancelado'"
+                            }
+                          }
+                        ]
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User",
+        "objects": {
+          "general": [
+            {
+              "properties": {
+                "isInvertedSelectionMode": {
+                  "expr": {
+                    "Literal": {
+                      "Value": "true"
+                    }
+                  }
+                }
+              }
+            }
+          ]
+        }
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Tela 5 - Template.svg'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Tela_5_-_Template8628007838588007.svg"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "dbff5c5bcd7aa425a2b0",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b31730cb2351790d3b8c",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a04599ab0b550b59204d",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6ce79fd6aac0c0077261",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ccdf78b92092163b15bb",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "NoFilter"
+    },
+    {
+      "source": "1f104e2db336b2d05195",
+      "target": "b96f1c303761194c09d5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1f104e2db336b2d05195",
+      "target": "978d55377e0b95bd195b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1f104e2db336b2d05195",
+      "target": "6df0556000b4e2c58496",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1f104e2db336b2d05195",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "DataFilter"
+    },
+    {
+      "source": "1f104e2db336b2d05195",
+      "target": "a0f652a4a812cb170410",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e9e02de060d4b9ba9678",
+      "target": "a0f652a4a812cb170410",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e9e02de060d4b9ba9678",
+      "target": "6df0556000b4e2c58496",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e9e02de060d4b9ba9678",
+      "target": "b96f1c303761194c09d5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "e9e02de060d4b9ba9678",
+      "target": "978d55377e0b95bd195b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a0f652a4a812cb170410",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "NoFilter"
+    },
+    {
+      "source": "a0f652a4a812cb170410",
+      "target": "6df0556000b4e2c58496",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a0f652a4a812cb170410",
+      "target": "b96f1c303761194c09d5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "a0f652a4a812cb170410",
+      "target": "978d55377e0b95bd195b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6df0556000b4e2c58496",
+      "target": "a0f652a4a812cb170410",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6df0556000b4e2c58496",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "NoFilter"
+    },
+    {
+      "source": "6df0556000b4e2c58496",
+      "target": "b96f1c303761194c09d5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "6df0556000b4e2c58496",
+      "target": "978d55377e0b95bd195b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b96f1c303761194c09d5",
+      "target": "6df0556000b4e2c58496",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b96f1c303761194c09d5",
+      "target": "a0f652a4a812cb170410",
+      "type": "DataFilter"
+    },
+    {
+      "source": "b96f1c303761194c09d5",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "NoFilter"
+    },
+    {
+      "source": "b96f1c303761194c09d5",
+      "target": "978d55377e0b95bd195b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "978d55377e0b95bd195b",
+      "target": "b96f1c303761194c09d5",
+      "type": "DataFilter"
+    },
+    {
+      "source": "978d55377e0b95bd195b",
+      "target": "6df0556000b4e2c58496",
+      "type": "DataFilter"
+    },
+    {
+      "source": "978d55377e0b95bd195b",
+      "target": "a0f652a4a812cb170410",
+      "type": "DataFilter"
+    },
+    {
+      "source": "978d55377e0b95bd195b",
+      "target": "e9e02de060d4b9ba9678",
+      "type": "NoFilter"
+    }
+  ]
+}
