@@ -1,0 +1,135 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/item/report/definition/page/2.1.0/schema.json",
+  "name": "20127174dcd23b00b131",
+  "displayName": "MAP - Governança e Padronização de Projetos",
+  "displayOption": "FitToPage",
+  "height": 800,
+  "width": 1420,
+  "filterConfig": {
+    "filters": [
+      {
+        "name": "b4e92fb8251140619e48",
+        "field": {
+          "Column": {
+            "Expression": {
+              "SourceRef": {
+                "Entity": "F_Asana_Unificado"
+              }
+            },
+            "Property": "Portifólio"
+          }
+        },
+        "type": "Categorical",
+        "filter": {
+          "Version": 2,
+          "From": [
+            {
+              "Name": "f",
+              "Entity": "F_Asana_Unificado",
+              "Type": 0
+            }
+          ],
+          "Where": [
+            {
+              "Condition": {
+                "In": {
+                  "Expressions": [
+                    {
+                      "Column": {
+                        "Expression": {
+                          "SourceRef": {
+                            "Source": "f"
+                          }
+                        },
+                        "Property": "Portifólio"
+                      }
+                    }
+                  ],
+                  "Values": [
+                    [
+                      {
+                        "Literal": {
+                          "Value": "'Pipeline'"
+                        }
+                      }
+                    ]
+                  ]
+                }
+              }
+            }
+          ]
+        },
+        "howCreated": "User"
+      }
+    ]
+  },
+  "objects": {
+    "background": [
+      {
+        "properties": {
+          "image": {
+            "image": {
+              "name": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Tela 5 - Template.svg'"
+                  }
+                }
+              },
+              "url": {
+                "expr": {
+                  "ResourcePackageItem": {
+                    "PackageName": "RegisteredResources",
+                    "PackageType": 1,
+                    "ItemName": "Tela_5_-_Template8628007838588007.svg"
+                  }
+                }
+              },
+              "scaling": {
+                "expr": {
+                  "Literal": {
+                    "Value": "'Normal'"
+                  }
+                }
+              }
+            }
+          },
+          "transparency": {
+            "expr": {
+              "Literal": {
+                "Value": "0D"
+              }
+            }
+          }
+        }
+      }
+    ]
+  },
+  "visualInteractions": [
+    {
+      "source": "d41132923d18b0259d75",
+      "target": "0ead479ab0089676cd1b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "3b4b7de6276ac7042925",
+      "target": "0ead479ab0089676cd1b",
+      "type": "DataFilter"
+    },
+    {
+      "source": "f6390ee614eba857a52b",
+      "target": "0ead479ab0089676cd1b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "37d66606a46d30bd25b5",
+      "target": "0ead479ab0089676cd1b",
+      "type": "NoFilter"
+    },
+    {
+      "source": "ab02e899d3c81cac7c97",
+      "target": "0ead479ab0089676cd1b",
+      "type": "NoFilter"
+    }
+  ]
+}
