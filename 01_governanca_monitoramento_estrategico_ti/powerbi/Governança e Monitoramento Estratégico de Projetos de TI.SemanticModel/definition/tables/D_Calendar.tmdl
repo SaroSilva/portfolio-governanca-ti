@@ -1,0 +1,69 @@
+table D_Calendar
+	lineageTag: 280a9666-db80-421f-8d52-c216edf438a4
+
+	column Date
+		formatString: General Date
+		lineageTag: 2932253c-83c0-4669-ae90-fdc2318f83fb
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 14d6b20b-d91d-4326-9ef4-ae3f49e983c5
+			defaultHierarchy: LocalDateTable_2f63c8be-77cf-4d24-a6a9-b3fd4ede11f7.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column Dia = DAY(D_Calendar[Date])
+		formatString: 0
+		lineageTag: 72d17b67-567c-46e3-a5f8-845136e9d664
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Mês = MONTH(D_Calendar[Date])
+		formatString: 0
+		lineageTag: 35975343-362f-47d8-ad4b-04da272246b3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano = YEAR(D_Calendar[Date])
+		formatString: 0
+		lineageTag: a4d5b9c2-8117-4e2c-9c0c-91dcaf2e17fe
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Semana = WEEKDAY(D_Calendar[Date],1)
+		formatString: 0
+		lineageTag: 3e4bc01e-aded-4a76-b917-ab2c687f0dc3
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Dias de Semana' = ```
+			
+			    SWITCH( 
+			        TRUE(),
+			            D_Calendar[Semana] = 1,"Domingo",
+			            D_Calendar[Semana] = 2,"Segunda-Feira",
+			            D_Calendar[Semana] = 3,"Terça-Feira",
+			            D_Calendar[Semana] = 4,"Quarta-Feira",
+			            D_Calendar[Semana] = 5,"Quinta-Feira",
+			            D_Calendar[Semana] = 6,"Sexta-Feira",
+			            D_Calendar[Semana] = 7,"Sábado"
+			    )
+			```
+		lineageTag: a4a33b68-eb48-4973-8ae3-fd965c1000c2
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_Calendar = calculated
+		mode: import
+		source = CALENDAR("01/01/2022", MAX('F_Asana_Unificado'[DH_PRAZO_FIM].[Date]))
+
+	annotation PBI_Id = d45eb62812a54ae2805332cecdeeac27
+

@@ -1,0 +1,65 @@
+model Model
+	culture: pt-BR
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: pt-BR
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+queryGroup Fonte
+
+	annotation PBI_QueryGroupOrder = 0
+
+queryGroup Dimenssões
+
+	annotation PBI_QueryGroupOrder = 1
+
+queryGroup Fatos
+
+	annotation PBI_QueryGroupOrder = 2
+
+annotation PBI_QueryOrder = ["F_Projetos_Principais","F_Projetos_Pausados","F_Projetos_Backlog","F_Asana_Unificado","F_Tasks - Diário PMO","_medidas","F_Projetos_Priorizados","D_ProjectName","D_TaskAssigneName","STI - PMO | Matriz de Riscos"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table F_Asana_Unificado
+ref table DateTableTemplate_fd84e52e-b771-4519-89a9-044a24cf78ae
+ref table _medidas
+ref table D_ProjectName
+ref table D_TaskAssigneName
+ref table D_Calendar
+ref table LocalDateTable_2f63c8be-77cf-4d24-a6a9-b3fd4ede11f7
+ref table LocalDateTable_f3449ef9-68f2-4941-a8fc-6c0a1a21dacb
+ref table LocalDateTable_39b98e90-b492-4a0a-9176-5c28b73a5068
+ref table LocalDateTable_8dbbf23a-c628-4793-ad5c-961aabda67af
+ref table LocalDateTable_190c92a9-d09c-424c-8328-7caec226b770
+ref table 'F_Tasks - Diário PMO'
+ref table LocalDateTable_880d905c-82e1-4651-af0a-77a5ec21d6ed
+ref table LocalDateTable_8b983aad-f738-4811-9804-3f9db6d23c74
+ref table LocalDateTable_52d4e332-0c51-4129-af75-d0adc748c12d
+ref table LocalDateTable_6cc6f2ba-866e-479c-bd43-1a3bc2e7af06
+ref table LocalDateTable_b4798519-10d0-48f4-bbea-55a346d25280
+ref table LocalDateTable_9e23ad8f-5ab6-40fd-9f3c-993929be5ae3
+ref table LocalDateTable_63320654-6927-453b-b501-09091e8acf62
+ref table LocalDateTable_8300f37b-9b63-48d7-8eb9-5615993d13e2
+ref table LocalDateTable_13080e9d-fcf6-4dc9-bfe6-530789a9337e
+ref table 'STI - PMO | Matriz de Riscos'
+ref table LocalDateTable_aeaee89c-ad75-40a3-a59d-c7a1e1b2e136
+ref table LocalDateTable_84020fb0-9e85-4a72-94ab-653db4fe33da
+ref table LocalDateTable_1b362f38-defd-4303-ab4d-ae2d7b50aaa1
+ref table LocalDateTable_b4626a5f-b07b-4603-9383-7218304578fc
+ref table LocalDateTable_fe900835-ad57-4be3-b1b9-99153505a667
+ref table LocalDateTable_7c5d012f-f241-49b6-b538-4893f5eb1514
+ref table LocalDateTable_58690e47-29e3-4a87-93e3-94d40328b0dc
+ref table LocalDateTable_6266f5d9-2a04-4ed3-8a46-b8e6dc5b1048
+ref table LocalDateTable_86d2a5bb-0c61-4a59-8697-0f6404a3925e
+ref table LocalDateTable_29af88f2-c906-405b-86f9-69d656308d63
+ref table LocalDateTable_e3c86a6a-47fe-481a-9561-de825c0fcb80
+
+ref role Adm
+ref role Tascom
+
+ref cultureInfo pt-BR
+

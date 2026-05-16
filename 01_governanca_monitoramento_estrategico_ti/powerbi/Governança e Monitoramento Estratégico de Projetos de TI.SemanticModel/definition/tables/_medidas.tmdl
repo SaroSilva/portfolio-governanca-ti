@@ -1,0 +1,768 @@
+table _medidas
+	lineageTag: 5d13a869-5315-415d-99e6-d47769ea0e90
+
+	measure '2. Total Task Planejadas' =
+			
+			/*Criado por: Tiago*/
+			/*Aprovado por: */
+			/*Revisado por: Massáro Júnio em 13/04/24*/
+			    DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Task Id])+0
+		formatString: #,0
+		displayFolder: Tarefas
+		lineageTag: 35e23078-8743-427e-9be5-125421395ac3
+
+	measure '2.1 Total Task Concluidas' =
+			
+			/*Criado por: Tiago*/
+			/*Aprovado por: */
+			/*Revisado por: Massáro Júnio em 13/04/24*/
+			    CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Task Id]),'F_Asana_Unificado'[DH_CONCLUSÃO] <> BLANK())+0
+		formatString: #,0
+		displayFolder: Tarefas
+		lineageTag: 82a5da97-e42e-47e5-ac07-618049ddfad0
+
+	measure '2.2 Total Task Reagendadas' =
+			
+			VAR REAGENDADAS = [2. Total Task Planejadas] - [2.1 Total Task Concluidas]
+			RETURN
+			IF (REAGENDADAS > 0, REAGENDADAS,REAGENDADAS *-1)
+		formatString: #,0
+		displayFolder: Tarefas
+		lineageTag: afd08066-8859-4829-a866-d11bab9e22ac
+
+	measure '#Meta dos Projetos' = 0.85
+		lineageTag: 3aad06f7-abf7-49a1-9972-ef5e8c4b6486
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '4. Taxa de Anadamento dos Projetos' = ```
+			
+			VAR Total_Tarefas =
+			    CALCULATE (
+			        DISTINCTCOUNTNOBLANK ( 'F_Asana_Unificado'[Task Id] ),
+			        F_Asana_Unificado[Portifólio] = "Pipeline",
+			        ALLEXCEPT ( 'F_Asana_Unificado', 'F_Asana_Unificado'[Project Name] ) 
+			    )
+			VAR Tarefas_Concluidas =
+			    CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Task Id]), F_Asana_Unificado[Portifólio] = "Pipeline", 'F_Asana_Unificado'[DH_CONCLUSÃO] <> BLANK())
+			RETURN
+			DIVIDE ( Tarefas_Concluidas, Total_Tarefas, 0 )
+			
+			```
+		displayFolder: Tarefas
+		lineageTag: 96bc6e71-7fac-4361-82d0-8836077689c1
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '4.1 vBarra Progresso Realizados Horizontal' = ```
+			
+			VAR vValor = [3. Tx(%) Task no Prazo] + 0
+			VAR vValor_formatado = FORMAT(vValor, "0.00%")
+			VAR vMeta = [#Meta dos Projetos]
+			VAR vMeta_formatado = FORMAT(vMeta, "0%")
+			
+			-- FORMATAÇÕES
+			VAR vFonte = "Segoe UI"
+			VAR vRotulo_categoria_texto = "Tasks Entregues no Prazo: "
+			VAR vRotulo_categoria_cor = "#000000"
+			VAR vRotulo_categoria_tam = 20
+			VAR vRotulo_categoria_peso = "bold"
+			
+			VAR vRotulo_dados_cor =
+			    SWITCH(
+			        TRUE(),
+			        vValor >= 0.80, "#047857",
+			        vValor >= 0.60 && vValor < 0.80, "#047077",
+			        vValor >= 0.40 && vValor < 0.60, "#BCC510",
+			        vValor >= 0.20 && vValor < 0.40, "#FFA513",
+			        vValor >= 0.01 && vValor < 0.20, "#FC0400",
+			        "#B3B3B3"
+			    )
+			
+			VAR vRotulo_dados_tam = 21
+			VAR vRotulo_dados_peso = 400
+			
+			VAR vBarra_altura = 21
+			VAR vBarra_comprimento = 150
+			VAR vBarra_progresso_cor = vRotulo_dados_cor
+			VAR vBarra_fundo_cor = "#d1d5db"
+			VAR vBarra_fundo_opacidade = 5
+			VAR vLinha_meta_larg = 3
+			VAR vLinha_meta_cor = "#3f3f3f"
+			
+			-- Layout geral
+			VAR vComprimento_Layout = 400
+			VAR vAltura_Layout = 70
+			VAR vOffsetX = 110
+			VAR vOffsetY = -10
+			VAR vLargura = 260
+			VAR vAltura = 90
+			
+			-- Cálculos da barra
+			VAR vComprimento_Progresso = MIN(vBarra_comprimento, MAX(0, ROUND(vBarra_comprimento * vValor, 0)))
+			VAR vPosicao_Meta = MIN(vBarra_comprimento, MAX(0, ROUND(vBarra_comprimento * vMeta, 0)))
+			
+			-- Posição da barra
+			VAR vPosicaoBarraX = 260
+			VAR vPosicaoBarraY = 13
+			
+			RETURN
+			"data:image/svg+xml;utf8,<svg width='" & vComprimento_Layout & "' height='" & vAltura_Layout &
+			"' viewBox='" & vOffsetX & " " & vOffsetY & " " & vLargura & " " & vAltura &
+			"' xmlns='http://www.w3.org/2000/svg'>
+			
+			<text fill='" & vRotulo_categoria_cor & "' font-family='" & vFonte & "' font-size='" & vRotulo_categoria_tam & "' font-weight='" & vRotulo_categoria_peso & "'>
+			    <tspan x='0' y='28'>" & vRotulo_categoria_texto & "</tspan>
+			</text>
+			
+			<rect x='" & vPosicaoBarraX & "' y='" & vPosicaoBarraY & "' width='" & vBarra_comprimento & "' height='" & vBarra_altura & "' fill='" & vBarra_fundo_cor & "' opacity='0." & vBarra_fundo_opacidade & "' />
+			<rect x='" & vPosicaoBarraX & "' y='" & vPosicaoBarraY & "' width='" & vComprimento_Progresso & "' height='" & vBarra_altura & "' fill='" & vBarra_progresso_cor & "' />
+			
+			<text fill='" & vRotulo_dados_cor & "' font-family='" & vFonte & "' font-size='" & vRotulo_dados_tam & "' font-weight='" & vRotulo_dados_peso & "'>
+			    <tspan x='" & (vPosicaoBarraX + vBarra_comprimento + 10) & "' y='" & (vPosicaoBarraY + vBarra_altura - 2) & "'>" & vValor_formatado & "</tspan>
+			</text>
+			
+			<!-- Linha da meta -->
+			<rect x='" & (vPosicaoBarraX + vPosicao_Meta) & "' y='" & (vPosicaoBarraY - 5) & "' width='" & vLinha_meta_larg & "' height='" & (vBarra_altura + 10) & "' fill='" & vLinha_meta_cor & "' />
+			
+			<!-- Texto da meta abaixo do traço -->
+			<text fill='" & vLinha_meta_cor & "' font-family='" & vFonte & "' font-size='16' font-weight='bold' text-anchor='middle'>
+			    <tspan x='" & (vPosicaoBarraX + vPosicao_Meta + (vLinha_meta_larg * 2)) & "' y='" & (vPosicaoBarraY + vBarra_altura - 30) & "'>" & (vMeta_formatado) & "</tspan>
+			</text>
+			
+			</svg>"
+			
+			```
+		displayFolder: Tarefas
+		lineageTag: 243fc260-0ffb-420d-9fcf-629cd6902dcf
+
+	measure '3. Tx(%) Task no Prazo' =
+			
+			/*
+			VAR PRAZO =CALCULATE(DISTINCTCOUNTNOBLANK(F_Tasks[Task Id]),F_Tasks[MED_BASE - TAG TASK MENSAL] = "NO PRAZO" && F_Tasks[DT_Conclusão_Task] <> BLANK())
+			    RETURN
+			    DIVIDE(PRAZO,[MED_BASE - TOTAL TASK PLANEJADAS],0)+0
+			*/
+			VAR PRAZO =CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Task Id]),'F_Asana_Unificado'[Classificacao Task Mensal] = "NO PRAZO" && 'F_Asana_Unificado'[DT_Conclusão_Task] <> BLANK())
+			    RETURN
+			    DIVIDE(PRAZO,[2. Total Task Planejadas],0)+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tarefas
+		lineageTag: 5fe1afbd-d2dc-4c0a-afd0-4bf513363994
+
+	measure '2.3 Total Task Fechadas no Prazo' = ```
+			
+			    VAR PRAZO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Task Id]),'F_Asana_Unificado'[Classificacao Task Mensal] = "NO PRAZO" && 'F_Asana_Unificado'[DT_Conclusão_Task] <> BLANK())
+			    RETURN
+			    PRAZO+0
+			```
+		formatString: #,0
+		displayFolder: Tarefas
+		lineageTag: 3f7d1291-3739-435b-8556-afa0497bb3c5
+
+	measure '3.1 Tx(%) Task Após o Prazo' = ```
+			
+			    VAR CONCLUSAO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Task Id]),'F_Asana_Unificado'[Classificacao Task Mensal] = "CONCLUIDO COM ATRASO")
+			    RETURN
+			    DIVIDE(CONCLUSAO,[2. Total Task Planejadas],0)+0
+			```
+		displayFolder: Tarefas
+		lineageTag: 5d6d7a52-6ea3-4efe-b3db-0bf6369d5bea
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '3.3 - Txt Tx no Prazo' =
+			
+			IF([2.3 Total Task Fechadas no Prazo] > 1000, FORMAT([2.3 Total Task Fechadas no Prazo],"#0,000"),[2.3 Total Task Fechadas no Prazo]) & " ("& FORMAT([3. Tx(%) Task no Prazo],"0%") &")"
+		displayFolder: Tarefas
+		lineageTag: 304158fa-1224-4f93-9214-92e113a73213
+
+	measure '3.4 - Txt Tx no com atraso' =
+			
+			IF([2.4 Total Task Fechadas após o Prazo] > 1000, FORMAT([2.4 Total Task Fechadas após o Prazo],"#0,000"),[2.4 Total Task Fechadas após o Prazo])  & " ("& FORMAT([3.1 Tx(%) Task Após o Prazo],"0%") &")"
+		displayFolder: Tarefas
+		lineageTag: fdebfc7f-cf52-441f-83be-685f8df3d95f
+
+	measure '2.4 Total Task Fechadas após o Prazo' = ```
+			
+			    VAR PRAZO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Task Id]),'F_Asana_Unificado'[Classificacao Task Mensal] = "CONCLUIDO COM ATRASO" && 'F_Asana_Unificado'[DT_Conclusão_Task] <> BLANK())
+			    RETURN
+			    PRAZO+0
+			```
+		formatString: 0
+		displayFolder: Tarefas
+		lineageTag: d3541619-e2f9-4199-948a-97236e97b4fa
+
+	measure '1 Total Projeto Ativos' = ```
+			
+			    DISTINCTCOUNT('F_Asana_Unificado'[Project Id])+0
+			```
+		formatString: 0
+		displayFolder: Projetos
+		lineageTag: 87ad3670-7429-4bda-bbe7-8453b169ec89
+
+	measure '1.1 Total Projetos Priorizados' =
+			
+			VAR priori = CALCULATE(
+			    DISTINCTCOUNT('F_Asana_Unificado'[Project Id])
+			)+0
+			RETURN
+			IF(priori > 1, "Projetos: "&priori, "Projeto: "&priori)
+		displayFolder: Projetos
+		lineageTag: e0086be9-33b4-4b25-9c1b-ceaa0a34bea5
+
+	measure '4.2 vBarra Progresso Andamento das Atividades Horizontal' = ```
+			
+			VAR vValor = [4. Taxa de Anadamento dos Projetos] + 0
+			VAR vValor_formatado = FORMAT(vValor, "0.0%")
+			VAR vMeta = [#Meta dos Projetos]
+			VAR vMeta_formatado = FORMAT(vMeta, "0%")
+			
+			-- FORMATAÇÕES
+			VAR vFonte = "Segoe UI"
+			VAR vRotulo_categoria_texto = "Progresso das Tarefas: "
+			VAR vRotulo_categoria_cor = "#000000"
+			VAR vRotulo_categoria_tam = 20
+			VAR vRotulo_categoria_peso = "bold"
+			
+			VAR vRotulo_dados_cor =
+			    SWITCH(
+			        TRUE(),
+			        vValor >= 0.80, "#047857",
+			        vValor >= 0.60 && vValor < 0.80, "#047077",
+			        vValor >= 0.40 && vValor < 0.60, "#BCC510",
+			        vValor >= 0.20 && vValor < 0.40, "#FFA513",
+			        vValor >= 0.01 && vValor < 0.20, "#FC0400",
+			        "#B3B3B3"
+			    )
+			
+			VAR vRotulo_dados_tam = 21
+			VAR vRotulo_dados_peso = 500
+			
+			VAR vBarra_altura = 21
+			VAR vBarra_comprimento = 150
+			VAR vBarra_progresso_cor = vRotulo_dados_cor
+			VAR vBarra_fundo_cor = "#d1d5db"
+			VAR vBarra_fundo_opacidade = 5
+			VAR vLinha_meta_larg = 3
+			VAR vLinha_meta_cor = "#3f3f3f"
+			
+			-- Layout geral
+			VAR vComprimento_Layout = 500
+			VAR vAltura_Layout = 80
+			VAR vOffsetX = 110
+			VAR vOffsetY = -10
+			VAR vLargura = 180
+			VAR vAltura = 90
+			
+			-- Cálculos da barra
+			VAR vComprimento_Progresso = MIN(vBarra_comprimento, MAX(0, ROUND(vBarra_comprimento * vValor, 0)))
+			VAR vPosicao_Meta = MIN(vBarra_comprimento, MAX(0, ROUND(vBarra_comprimento * vMeta, 0)))
+			
+			-- Posição da barra
+			VAR vPosicaoBarraX = 220
+			VAR vPosicaoBarraY = 13
+			
+			RETURN
+			"data:image/svg+xml;utf8,<svg width='" & vComprimento_Layout & "' height='" & vAltura_Layout &
+			"' viewBox='" & vOffsetX & " " & vOffsetY & " " & vLargura & " " & vAltura &
+			"' xmlns='http://www.w3.org/2000/svg'>
+			
+			<text fill='" & vRotulo_categoria_cor & "' font-family='" & vFonte & "' font-size='" & vRotulo_categoria_tam & "' font-weight='" & vRotulo_categoria_peso & "'>
+			    <tspan x='0' y='28'>" & vRotulo_categoria_texto & "</tspan>
+			</text>
+			
+			<rect x='" & vPosicaoBarraX & "' y='" & vPosicaoBarraY & "' width='" & vBarra_comprimento & "' height='" & vBarra_altura & "' fill='" & vBarra_fundo_cor & "' opacity='0." & vBarra_fundo_opacidade & "' />
+			<rect x='" & vPosicaoBarraX & "' y='" & vPosicaoBarraY & "' width='" & vComprimento_Progresso & "' height='" & vBarra_altura & "' fill='" & vBarra_progresso_cor & "' />
+			
+			<text fill='" & vRotulo_dados_cor & "' font-family='" & vFonte & "' font-size='" & vRotulo_dados_tam & "' font-weight='" & vRotulo_dados_peso & "'>
+			    <tspan x='" & (vPosicaoBarraX + vBarra_comprimento + 10) & "' y='" & (vPosicaoBarraY + vBarra_altura - 2) & "'>" & vValor_formatado & "</tspan>
+			</text>
+			
+			<!-- Linha da meta -->
+			<rect x='" & (vPosicaoBarraX + vPosicao_Meta) & "' y='" & (vPosicaoBarraY - 5) & "' width='" & vLinha_meta_larg & "' height='" & (vBarra_altura + 10) & "' fill='" & vLinha_meta_cor & "' />
+			
+			<!-- Texto da meta abaixo do traço -->
+			<text fill='" & vLinha_meta_cor & "' font-family='" & vFonte & "' font-size='15' font-weight='bold' text-anchor='middle'>
+			    <tspan x='" & (vPosicaoBarraX + vPosicao_Meta + (vLinha_meta_larg * 2)) & "' y='" & (vPosicaoBarraY + vBarra_altura - 30) & "'>" & (vMeta_formatado) & "</tspan>
+			</text>
+			
+			</svg>"
+			
+			```
+		displayFolder: Tarefas
+		lineageTag: 0ee332b8-dcf8-4420-8b0b-b071fe5c2536
+
+	measure '4.3 vBarra Progresso StatuS Horizontal' = ```
+			
+			VAR vValor = SELECTEDVALUE('F_Asana_Unificado'[Status Name])
+			VAR vStatus = SELECTEDVALUE('F_Asana_Unificado'[Project Current Status Color])
+			
+			-- Ícone correspondente
+			VAR vMeta =
+			    SWITCH(
+			        TRUE(),
+			        vStatus = "green",   "🟢",
+			        vStatus = "red",     "🔴",
+			        vStatus = "blue",    "🔵",
+			        vStatus = "yellow",  "🟡",
+			        vStatus = "complete","✅",
+			        "⚫"
+			    )
+			
+			-- FORMATAÇÕES
+			VAR vFonte = "Segoe UI"
+			VAR vRotulo_categoria_texto = "Status: "
+			VAR vRotulo_categoria_cor = "#000000"
+			VAR vRotulo_categoria_tam = 18
+			VAR vRotulo_categoria_peso = "bold"   -- <<< Negrito no rótulo
+			
+			VAR vRotulo_dados_cor = "#000000"
+			VAR vRotulo_dados_tam = 15
+			VAR vRotulo_dados_peso = 150        -- <<< Normal no valor
+			
+			-- Layout
+			VAR vComprimento_Layout = 300
+			VAR vAltura_Layout = 30
+			VAR vOffsetX = 90
+			VAR vOffsetY = 10
+			VAR vLargura = 100
+			VAR vAltura = 30
+			
+			RETURN
+			"data:image/svg+xml;utf8,<svg width='" & vComprimento_Layout & "' height='" & vAltura_Layout &
+			"' viewBox='" & vOffsetX & " " & vOffsetY & " " & vLargura & " " & vAltura &
+			"' xmlns='http://www.w3.org/2000/svg'>
+			
+			<text fill='" & vRotulo_categoria_cor & "' font-family='" & vFonte & "' font-size='" & vRotulo_categoria_tam & "' font-weight='" & vRotulo_categoria_peso & "'>
+			    <tspan x='0' y='28'>" & vRotulo_categoria_texto & "</tspan>
+			</text>
+			
+			<text fill='" & vRotulo_dados_cor & "' font-family='" & vFonte & "' font-size='" & vRotulo_dados_tam & "' font-weight='" & vRotulo_dados_peso & "'>
+			    <tspan x='65' y='28'>" & vMeta & " " & vValor & "</tspan>
+			</text>
+			
+			</svg>"
+			
+			```
+		displayFolder: Tarefas
+		lineageTag: 04611edb-d889-4631-b12e-b8772a29292f
+
+	measure '5. Total Task Concluidas PMO' =
+			
+			/*Criado por: Tiago*/
+			/*Aprovado por: */
+			/*Revisado por: Massáro Júnio em 13/04/24*/
+			    CALCULATE(
+			        DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),
+			            'F_Tasks - Diário PMO'[DT_Conclusão_Task] <> BLANK() &&
+			            MONTH('F_Tasks - Diário PMO'[DT_Criação_Task]) = MONTH('F_Tasks - Diário PMO'[DT_Conclusão_Task])
+			            )+0
+		formatString: 0
+		displayFolder: Tarefas PMO
+		lineageTag: 3fdc51a0-811e-4efc-bf96-99e3d214fa26
+
+	measure '5.1 Total Task Não Planejadas PMO' = ```
+			
+			/*Criado por: Tiago*/
+			/*Aprovado por: */
+			/*Revisado por: Massáro Júnio em 13/04/24*/
+			        CALCULATE(
+			            DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),
+			                'F_Tasks - Diário PMO'[DT_Prazo_Task] = BLANK() &&
+			                MONTH('F_Tasks - Diário PMO'[DT_Criação_Task]) = MONTH(TODAY())
+			                )+0 
+			```
+		formatString: 0
+		displayFolder: Tarefas PMO
+		lineageTag: ed4b8c2b-6937-49b6-83fa-5c8634204689
+
+	measure '5.2 Total Task Planejadas PMO' =
+			
+			/*Criado por: Tiago*/
+			/*Aprovado por: */
+			/*Revisado por: Massáro Júnio em 13/04/24*/
+			        CALCULATE(
+			            DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),
+			            ISBLANK('F_Tasks - Diário PMO'[DT_Prazo_Task]) = FALSE(),
+			            MONTH('F_Tasks - Diário PMO'[DT_Criação_Task]) = MONTH('F_Tasks - Diário PMO'[DT_Prazo_Task])
+			            )+0
+		formatString: #,0
+		displayFolder: Tarefas PMO
+		lineageTag: 8ca755c8-fd20-4fde-97c0-27024c5b9a59
+
+	measure '6. Tx(%) Task no Prazo PMO' =
+			
+			VAR PRAZO =CALCULATE(DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),'F_Tasks - Diário PMO'[Classificacao Task Mensal] = "NO PRAZO" && 'F_Tasks - Diário PMO'[DT_Conclusão_Task] <> BLANK())
+			    RETURN
+			    DIVIDE(PRAZO,[5.2 Total Task Planejadas PMO],0)
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tarefas PMO
+		lineageTag: d0929302-2625-445e-85bd-82927558ff2f
+
+	measure '6.1 Tx(%) Task com Atrasos PMO' = ```
+			
+			    VAR CONCLUSAO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),'F_Tasks - Diário PMO'[Classificacao Task Mensal] = "CONCLUIDO COM ATRASO")
+			    RETURN
+			    DIVIDE(CONCLUSAO,[5.2 Total Task Planejadas PMO],0)+0
+			```
+		displayFolder: Tarefas PMO
+		lineageTag: e90ce6e2-7306-4188-a098-51e81c0a97f3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '6.2 Tx(%) Task Atrasadas PMO' = ```
+			
+			    VAR ATRASADA = CALCULATE(DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),'F_Tasks - Diário PMO'[Classificacao Task Mensal] = "ATRASADA")
+			    RETURN
+			    DIVIDE(ATRASADA,[5. Total Task Concluidas PMO],0)+0
+			```
+		displayFolder: Tarefas PMO
+		lineageTag: 8493ca16-560b-43f5-9523-0208f51033a6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '5.3 Total Task Fechadas no Prazo' = ```
+			
+			    VAR PRAZO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),'F_Tasks - Diário PMO'[Classificacao Task Mensal] = "NO PRAZO" && 'F_Tasks - Diário PMO'[DT_Conclusão_Task] <> BLANK())
+			    RETURN
+			    PRAZO+0
+			```
+		formatString: #,0
+		displayFolder: Tarefas PMO
+		lineageTag: ce47b375-b34d-490c-83ab-b48e7d23d0e5
+
+	measure '6.3 Tx(%) Task no Prazo PMO' =
+			
+			VAR PRAZO =CALCULATE(DISTINCTCOUNTNOBLANK('F_Tasks - Diário PMO'[Task Id]),'F_Tasks - Diário PMO'[Classificacao Task Mensal] = "NO PRAZO" && 'F_Tasks - Diário PMO'[DT_Conclusão_Task] <> BLANK())
+			    RETURN
+			    DIVIDE(PRAZO,[5.2 Total Task Planejadas PMO],0)+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Tarefas PMO
+		lineageTag: 8078d9fe-bbf3-4bb2-8a5d-bf452f5878ef
+
+	measure 'Matriz - %TAP' = ```
+			
+			    VAR noprazo = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),'F_Asana_Unificado'[1 - TAP] = "Concluído")
+			    VAR TAP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Name]),ISBLANK('F_Asana_Unificado'[1 - TAP]) = FALSE(), 'F_Asana_Unificado'[1 - TAP] <> "Não Aplicável – Acompanhamento")
+			    RETURN
+			    DIVIDE(noprazo,TAP,0)+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Metodologia Aplicável
+		lineageTag: 200efb78-abc4-432c-bf90-347adc14d355
+
+	measure 'Matriz - %DEP' = ```
+			
+			    VAR noprazo = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),'F_Asana_Unificado'[2 - DEP] = "Concluído")
+			    VAR DEP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Name]),ISBLANK('F_Asana_Unificado'[2 - DEP]) = FALSE(), 'F_Asana_Unificado'[2 - DEP] <> "Não Aplicável – Acompanhamento")
+			    RETURN
+			    DIVIDE(noprazo,DEP,0)+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Metodologia Aplicável
+		lineageTag: 0ae0a3c4-ea90-4243-8ba5-dab7b3f89436
+
+	measure 'Matriz - %CRO' = ```
+			
+			    VAR noprazo = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),'F_Asana_Unificado'[3 - Cronograma do Projeto] = "Concluído")
+			    VAR CRO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Name]),ISBLANK('F_Asana_Unificado'[3 - Cronograma do Projeto]) = FALSE(), 'F_Asana_Unificado'[3 - Cronograma do Projeto] <> "Não Aplicável – Acompanhamento")
+			    RETURN
+			    DIVIDE(noprazo,CRO,0)+0
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Metodologia Aplicável
+		lineageTag: 074e785e-c8d7-41d6-8c7f-9dab338ba49d
+
+	measure 'Progreção da Matriz Meta' = ```
+			
+			    VAR TAP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[1 - TAP]) = FALSE(), 'F_Asana_Unificado'[1 - TAP] <> "Não Aplicável – Acompanhamento")
+			    VAR DEP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[2 - DEP]) = FALSE(), 'F_Asana_Unificado'[2 - DEP] <> "Não Aplicável – Acompanhamento")
+			    VAR CRO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[3 - Cronograma do Projeto]) = FALSE(), 'F_Asana_Unificado'[3 - Cronograma do Projeto] <> "Não Aplicável – Acompanhamento")
+			    RETURN
+			    TAP + DEP + CRO
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: 5882ccb9-b524-4e1d-a9bf-021fdd6c661a
+
+	measure 'Matriz Meta TAP' = ```
+			
+			    VAR TAP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[1 - TAP]) = FALSE(), 'F_Asana_Unificado'[1 - TAP] <> "Não Aplicável – Acompanhamento")
+			    VAR DEP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[2 - DEP]) = FALSE(), 'F_Asana_Unificado'[2 - DEP] <> "Não Aplicável – Acompanhamento")
+			    VAR CRO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[3 - Cronograma do Projeto]) = FALSE(), 'F_Asana_Unificado'[3 - Cronograma do Projeto] <> "Não Aplicável – Acompanhamento")
+			    RETURN
+			    TAP
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: db485dc0-fe3d-4079-8813-99ee673ce4a1
+
+	measure 'Matriz Meta DEP' = ```
+			
+			    VAR TAP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[1 - TAP]) = FALSE(), 'F_Asana_Unificado'[1 - TAP] <> "Não Aplicável – Acompanhamento")
+			    VAR DEP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[2 - DEP]) = FALSE(), 'F_Asana_Unificado'[2 - DEP] <> "Não Aplicável – Acompanhamento")
+			    VAR CRO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[3 - Cronograma do Projeto]) = FALSE(), 'F_Asana_Unificado'[3 - Cronograma do Projeto] <> "Não Aplicável – Acompanhamento")
+			    RETURN
+			    DEP
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: 4df654c5-9d63-4b54-afcc-8290e27138bb
+
+	measure 'Matriz Meta CRO' = ```
+			
+			    VAR TAP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[1 - TAP]) = FALSE(), 'F_Asana_Unificado'[1 - TAP] <> "Não Aplicável – Acompanhamento")
+			    VAR DEP = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[2 - DEP]) = FALSE(), 'F_Asana_Unificado'[2 - DEP] <> "Não Aplicável – Acompanhamento")
+			    VAR CRO = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),ISBLANK('F_Asana_Unificado'[3 - Cronograma do Projeto]) = FALSE(), 'F_Asana_Unificado'[3 - Cronograma do Projeto] <> "Não Aplicável – Acompanhamento")
+			    RETURN
+			    CRO
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: 53eed10e-034b-470f-8ce5-bb95aaac0d5a
+
+	measure 'Metodologia - CRO' = ```
+			
+			    VAR noprazo = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),'F_Asana_Unificado'[3 - Cronograma do Projeto] = "Concluído")
+			    RETURN
+			    noprazo
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: 4cdd507a-20fd-4d20-b2d3-0ca32a6b3ae4
+
+	measure 'Metodologia - DEP' = ```
+			
+			    VAR noprazo = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),'F_Asana_Unificado'[2 - DEP] = "Concluído")
+			    RETURN
+			    noprazo
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: 10b3f283-0c9c-449e-81b4-1ca646bacf2d
+
+	measure 'Metodologia - TAP' = ```
+			
+			    VAR noprazo = CALCULATE(DISTINCTCOUNTNOBLANK('F_Asana_Unificado'[Project Id]),'F_Asana_Unificado'[1 - TAP] = "Concluído")
+			    RETURN
+			    noprazo
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: 085a231a-1752-413c-90d4-2882fa1c5a31
+
+	measure 'Progreção da Matriz Total' = ```
+			
+			    [Metodologia - CRO] + [Metodologia - DEP] + [Metodologia - TAP]
+			```
+		formatString: 0
+		displayFolder: Metodologia Aplicável
+		lineageTag: 065984f4-35f9-4645-90d6-3a53d50d21e9
+
+	measure 'Progreção da Matriz Taxa Atingida' = DIVIDE([Progreção da Matriz Total],[Progreção da Matriz Meta],0)+0
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Metodologia Aplicável
+		lineageTag: 3e5b1003-5b75-4f2b-8981-808dabedba89
+
+	measure '7. Total de Riscos Registrados' =
+			
+			DISTINCTCOUNTNOBLANK('STI - PMO | Matriz de Riscos'[ID])+0
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: 7ffa8847-fa3a-4bfb-8d95-745f80b14aad
+
+	measure '7.1 Total de Projetos Mapeados' =
+			
+			DISTINCTCOUNTNOBLANK('STI - PMO | Matriz de Riscos'[Projeto])+0
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: 4c879d8d-2d78-40d3-a570-5e877f327505
+
+	measure '7.2 Matriz Risco - Solução no Prazo' = ```
+			
+			    VAR DENTRO_MES = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			        //  MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) = MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        'STI - PMO | Matriz de Riscos'[Risco Resolvido no Prazo] = "SIM"
+			        )
+			    VAR ANTECIPADOS = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        //USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) > MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )
+			        RETURN
+			        DENTRO_MES
+			```
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: 112aefc6-2e0e-4f72-9d81-8bc4f46ecb22
+
+	measure '7.3 Matriz Risco - com prazo' = ```
+			
+			    VAR geral = CALCULATE(
+			                    DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			                    /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Prazo para Resolução]),*/
+			                    'STI - PMO | Matriz de Riscos'[Prazo para Resolução] <> BLANK(),
+			                    USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Prazo para Resolução])
+			                    )+0
+			    VAR ANTECIPADOS = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) > MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )
+			
+			RETURN
+			geral + ANTECIPADOS
+			```
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: c8d1411a-ba79-4d7b-ba54-d59cb1b5fa1f
+
+	measure '7.4 Matriz Risco - Identificados' = ```
+			
+			    CALCULATE(
+			        DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        'STI - PMO | Matriz de Riscos'[Data de Identificação] <> BLANK()
+			        )+0
+			```
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: 98d9f9e0-84ff-4b1f-b051-8bb924539a64
+
+	measure '8. Matriz Risco(%) - Resolvidos no Prazo' = DIVIDE([7.2 Matriz Risco - Solução no Prazo], [7.3 Matriz Risco - com prazo])
+		formatString: 0.00%;-0.00%;0.00%
+		displayFolder: Matriz Risco - Lists
+		lineageTag: 0cd3f590-9034-4bfb-b750-8820ffb0da7e
+
+	measure '8.1 Matriz Risco Resolvidos Fora do Prazo' = ```
+			
+			    VAR prazo = 
+			    CALCULATE(
+			        DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Prazo para Resolução]),*/
+			        'STI - PMO | Matriz de Riscos'[Prazo para Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Prazo para Resolução])
+			        )+0
+			    
+			    VAR ANTECIPADOS = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) > MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )
+			
+			    VAR geral = prazo + ANTECIPADOS
+			
+			    VAR fora = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			        MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução]) <> MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) 
+			        )+0
+			    RETURN
+			    DIVIDE(fora,geral,0)
+			```
+		displayFolder: Matriz Risco - Lists
+		lineageTag: 6ab93213-91ad-43f9-85bc-c38ea6359df8
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure '7.5 Matriz Risco - resolvidos mes' = [7.2 Matriz Risco - Solução no Prazo] + [7.21 Matriz Risco - Solução Antecipada]
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: e6cb86ca-8a0b-43e8-85aa-ca5bff729189
+
+	measure '7.21 Matriz Risco - Solução Antecipada' = ```
+			
+			    VAR DENTRO_MES = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) = MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )
+			    VAR ANTECIPADOS = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) > MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )
+			        RETURN
+			        ANTECIPADOS
+			```
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: 102e1771-8e4c-4288-a95a-025f8af84f75
+
+	measure '7.22 Matriz Risco - Solução Fora Prazo' = ```
+			
+			    VAR DENTRO_MES = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) = MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )
+			    VAR ANTECIPADOS = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) > MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )
+			
+			    VAR FORA = 
+			    CALCULATE(
+			       DISTINCTCOUNT('STI - PMO | Matriz de Riscos'[ID]),
+			        /*USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),*/
+			        //'STI - PMO | Matriz de Riscos'[Data da Resolução] <> BLANK(),
+			        USERELATIONSHIP(D_Calendar[Date],'STI - PMO | Matriz de Riscos'[Data da Resolução]),
+			         MONTH('STI - PMO | Matriz de Riscos'[Prazo para Resolução]) <> MONTH('STI - PMO | Matriz de Riscos'[Data da Resolução])
+			        )        
+			        RETURN
+			        FORA+0
+			```
+		formatString: 0
+		displayFolder: Matriz Risco - Lists
+		lineageTag: bdb28246-0f03-4ae8-96c1-1824c6824e92
+
+	column _medidas
+		dataType: string
+		lineageTag: 70f3913c-8e81-4327-ac18-1af1f5b8bda8
+		summarizeBy: none
+		sourceColumn: _medidas
+
+		annotation SummarizationSetBy = Automatic
+
+	partition _medidas = m
+		mode: import
+		source =
+				let
+				    Fonte = ""
+				in
+				    Fonte
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Text
+

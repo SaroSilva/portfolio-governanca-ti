@@ -1,0 +1,1059 @@
+table F_Asana_Unificado
+	lineageTag: 75b64b27-d174-4446-94de-7ba4de7ee1a1
+
+	column 'Project Current Status Color'
+		dataType: string
+		lineageTag: 2ee5d562-6524-4510-bc39-45dd8c1fa0a5
+		summarizeBy: none
+		sourceColumn: Project Current Status Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Current Status Text'
+		dataType: string
+		lineageTag: 4841a05a-04a5-4139-8067-1681c80344a4
+		summarizeBy: none
+		sourceColumn: Project Current Status Text
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Current Status Posted On'
+		dataType: string
+		lineageTag: 95676dc8-b1c8-41b6-a3dd-4a2aa70141a7
+		summarizeBy: none
+		sourceColumn: Project Current Status Posted On
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Current Status Posted By'
+		dataType: string
+		lineageTag: c0ea78da-df9d-4726-b5e3-228edf45cd9d
+		summarizeBy: none
+		sourceColumn: Project Current Status Posted By
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Data Archived'
+		dataType: string
+		lineageTag: 42f55f9e-9c7f-4984-9eee-d53005baca45
+		summarizeBy: none
+		sourceColumn: Project Data Archived
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 1267c655-7a2a-4dbd-b758-6380723e5fca
+		summarizeBy: none
+		sourceColumn: Project Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Color'
+		dataType: string
+		lineageTag: 45f661af-ce73-43b2-8e4a-e918fb08ae43
+		summarizeBy: none
+		sourceColumn: Project Color
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Created At'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: c4273810-0c91-4307-a657-8d531fcc779c
+		summarizeBy: none
+		sourceColumn: Project Created At
+
+		variation Variation
+			isDefault
+			relationship: 4d222c6d-ecba-4e32-a045-18e1e6f0d300
+			defaultHierarchy: LocalDateTable_b4626a5f-b07b-4603-9383-7218304578fc.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Modified At'
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 41b08022-cb85-49cb-8b1f-bd6127336393
+		summarizeBy: none
+		sourceColumn: Project Modified At
+
+		variation Variation
+			isDefault
+			relationship: 844fc7e7-69be-4ce6-80f0-03aa77a7d014
+			defaultHierarchy: LocalDateTable_fe900835-ad57-4be3-b1b9-99153505a667.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: 5541fd6b-42f1-48a2-81ec-27f3dbfb19a3
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Notes'
+		dataType: string
+		lineageTag: a1d76b11-df15-40fd-aa0e-bfaebadc0ae6
+		summarizeBy: none
+		sourceColumn: Project Notes
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Owner Name'
+		dataType: string
+		lineageTag: 9f2a3939-159b-4212-a7f6-2364337284ae
+		summarizeBy: none
+		sourceColumn: Project Owner Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Public'
+		dataType: string
+		lineageTag: 946f317a-9114-4011-9610-cb2fc142b4c3
+		summarizeBy: none
+		sourceColumn: Project Public
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Due On'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2a5916ba-9333-4874-8a0e-ce67fd434e7e
+		summarizeBy: none
+		sourceColumn: Project Due On
+
+		variation Variation
+			isDefault
+			relationship: 3d868508-14fb-4ba3-a631-8736e1929036
+			defaultHierarchy: LocalDateTable_7c5d012f-f241-49b6-b538-4893f5eb1514.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Project Start On'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 6e79f3d6-18d3-4fb0-9980-1c76399adcdb
+		summarizeBy: none
+		sourceColumn: Project Start On
+
+		variation Variation
+			isDefault
+			relationship: a4965f21-c5a7-4217-83f5-2d589482118d
+			defaultHierarchy: LocalDateTable_58690e47-29e3-4a87-93e3-94d40328b0dc.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Workspace Name'
+		dataType: string
+		lineageTag: be24324d-4be9-4750-a96d-9b7a6060f9a0
+		summarizeBy: none
+		sourceColumn: Workspace Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Team Name'
+		dataType: string
+		lineageTag: 04c73e5b-31dd-4349-b41c-90eeaa46e02a
+		summarizeBy: none
+		sourceColumn: Team Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Setor | Área Demandante'
+		dataType: string
+		lineageTag: 7bc6ab19-66a8-4449-a8ed-eede0843cc52
+		summarizeBy: none
+		sourceColumn: Setor | Área Demandante
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Horas Estimadas'
+		dataType: string
+		lineageTag: d9ee882d-6d5a-4e30-ab62-a3c93ae5ce53
+		summarizeBy: none
+		sourceColumn: Horas Estimadas
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Especialidade/Delivery '
+		dataType: string
+		lineageTag: 5612b4b3-1451-4064-a1bd-19fd53963047
+		summarizeBy: none
+		sourceColumn: "Especialidade/Delivery "
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1 - TAP'
+		dataType: string
+		lineageTag: 8e51edcf-9152-400c-ac54-33ab43c6d72a
+		summarizeBy: none
+		sourceColumn: 1 - TAP
+
+		annotation SummarizationSetBy = Automatic
+
+	column '2 - DEP'
+		dataType: string
+		lineageTag: 8db47442-3313-41ed-ba26-0a8ed484c697
+		summarizeBy: none
+		sourceColumn: 2 - DEP
+
+		annotation SummarizationSetBy = Automatic
+
+	column '3 - Cronograma do Projeto'
+		dataType: string
+		lineageTag: c9702075-934a-49ad-bd3c-9c95e7b6e9c8
+		summarizeBy: none
+		sourceColumn: 3 - Cronograma do Projeto
+
+		annotation SummarizationSetBy = Automatic
+
+	column '4 - Matriz de Riscos'
+		dataType: string
+		lineageTag: b1ba9820-f166-441c-a383-c27b9dafd459
+		summarizeBy: none
+		sourceColumn: 4 - Matriz de Riscos
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Status Name'
+		dataType: string
+		lineageTag: fb66b882-4a16-43dc-a028-2a971f1fcee5
+		summarizeBy: none
+		sourceColumn: Status Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Resumo do Projeto'
+		dataType: string
+		lineageTag: f6953798-0932-4382-9bde-71c116b37e00
+		summarizeBy: none
+		sourceColumn: Resumo do Projeto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'N1 - Superintendência-gId'
+		dataType: string
+		lineageTag: 55e720c0-9dd1-4e78-a95d-21e0fc3a4113
+		summarizeBy: none
+		sourceColumn: N1 - Superintendência-gId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'N1 - Superintendência-name'
+		dataType: string
+		lineageTag: 88f219bd-225a-4b0c-8fcd-8f6dde832733
+		summarizeBy: none
+		sourceColumn: N1 - Superintendência-name
+
+		annotation SummarizationSetBy = Automatic
+
+	column Liderança-gId
+		dataType: string
+		lineageTag: 62606f71-7a85-46ef-aa0b-87d0cfd99736
+		summarizeBy: none
+		sourceColumn: Liderança-gId
+
+		annotation SummarizationSetBy = Automatic
+
+	column Liderança-name
+		dataType: string
+		lineageTag: 2acad3f3-728b-40e5-a2f6-c6596583794a
+		summarizeBy: none
+		sourceColumn: Liderança-name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Analista PMO-gId'
+		dataType: string
+		lineageTag: a94a429d-2d07-4df6-85cc-69030b9c05ae
+		summarizeBy: none
+		sourceColumn: Analista PMO-gId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Analista PMO-name'
+		dataType: string
+		lineageTag: f6d55b52-4c37-4e1f-8736-2187fa2ce4e7
+		summarizeBy: none
+		sourceColumn: Analista PMO-name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Categoria do Projeto'
+		dataType: string
+		lineageTag: 10617c13-2bbe-4951-bb55-8790b13f3411
+		summarizeBy: none
+		sourceColumn: Categoria do Projeto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Área de Impacto'
+		dataType: string
+		lineageTag: 5d6eec62-f9bf-4d5b-9880-f7571f6d31d4
+		summarizeBy: none
+		sourceColumn: Área de Impacto
+
+		annotation SummarizationSetBy = Automatic
+
+	column Tecnologias
+		dataType: string
+		lineageTag: 7c735da0-517f-4f24-b05f-70f5e6bc84d8
+		summarizeBy: none
+		sourceColumn: Tecnologias
+
+		annotation SummarizationSetBy = Automatic
+
+	column Melhoria
+		dataType: string
+		lineageTag: 0cca5ba1-6257-4c10-a373-467922583716
+		summarizeBy: none
+		sourceColumn: Melhoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Setor | Seleção múltipla'
+		dataType: string
+		lineageTag: 36f817e7-fd46-45f3-8f12-aef7fbb9208a
+		summarizeBy: none
+		sourceColumn: Setor | Seleção múltipla
+
+		annotation SummarizationSetBy = Automatic
+
+	column GD
+		dataType: string
+		lineageTag: a9fa7597-dba6-48d1-abe8-97aea26b499f
+		summarizeBy: none
+		sourceColumn: GD
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Filtro Status Report'
+		dataType: string
+		lineageTag: 900b5a8e-6800-4762-a447-4153daf8f9b4
+		summarizeBy: none
+		sourceColumn: Filtro Status Report
+
+		annotation SummarizationSetBy = Automatic
+
+	column Esforço
+		dataType: string
+		lineageTag: 67cfe26f-b75d-42b8-9cf4-6d98416e11bf
+		summarizeBy: none
+		sourceColumn: Esforço
+
+		annotation SummarizationSetBy = Automatic
+
+	column Resultado
+		dataType: string
+		lineageTag: 11a61c55-9876-4ce2-9300-d9beee8e16b7
+		summarizeBy: none
+		sourceColumn: Resultado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projeto está'
+		dataType: string
+		lineageTag: dd4e4626-0960-4578-a4d9-2e594e653ae1
+		summarizeBy: none
+		sourceColumn: Projeto está
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custo Estimado pelo Solicitante'
+		dataType: string
+		lineageTag: 7a876bb1-c6c0-4b88-9f48-54129ff8765b
+		summarizeBy: none
+		sourceColumn: Custo Estimado pelo Solicitante
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Priorização N1'
+		dataType: string
+		lineageTag: 06999648-1887-49a6-b104-3d7fea512018
+		summarizeBy: none
+		sourceColumn: Priorização N1
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Priorização '
+		dataType: string
+		lineageTag: a7f0b251-8429-4298-b1c0-8322c7f8527d
+		summarizeBy: none
+		sourceColumn: "Priorização "
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Custo estimado pela TI'
+		dataType: string
+		lineageTag: 2452466e-46aa-4ab3-8aaa-a4d9161092e5
+		summarizeBy: none
+		sourceColumn: Custo estimado pela TI
+
+		annotation SummarizationSetBy = Automatic
+
+	column Orçado
+		dataType: string
+		lineageTag: fff3c901-9e60-4073-8292-389b65bcf233
+		summarizeBy: none
+		sourceColumn: Orçado
+
+		annotation SummarizationSetBy = Automatic
+
+	column Ano
+		dataType: string
+		lineageTag: 1c961444-2269-4a47-abc3-f0929234ec55
+		summarizeBy: none
+		sourceColumn: Ano
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projetos por Gerência do STI'
+		dataType: string
+		lineageTag: fa092a6c-200d-4a36-8bfe-dfdd9e51f3aa
+		summarizeBy: none
+		sourceColumn: Projetos por Gerência do STI
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Novo Analista PMO'
+		dataType: string
+		lineageTag: 5842554f-69b4-458b-b0cc-80f06d2fe64d
+		summarizeBy: none
+		sourceColumn: Novo Analista PMO
+
+		annotation SummarizationSetBy = Automatic
+
+	column ' Prazo para Entrega '
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fdc8d06d-cdd0-4bf2-ae04-e54aa3007c55
+		summarizeBy: none
+		sourceColumn: " Prazo para Entrega "
+
+		variation Variation
+			isDefault
+			relationship: 07f0fa82-22bb-47c0-b427-a071929ce920
+			defaultHierarchy: LocalDateTable_190c92a9-d09c-424c-8328-7caec226b770.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Coordenação e Supervisor'
+		dataType: string
+		lineageTag: 917f6d29-778b-4b0f-b97e-89f0103ed7d5
+		summarizeBy: none
+		sourceColumn: Coordenação e Supervisor
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Prog. Proj. TD'
+		dataType: string
+		lineageTag: 9f07c21c-67e0-4753-ab18-967d519aebec
+		summarizeBy: none
+		sourceColumn: Prog. Proj. TD
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'LINK do Cronograma no Sharepoint'
+		dataType: string
+		lineageTag: afe63552-6e31-453c-9f48-96742e9ca8fc
+		summarizeBy: none
+		sourceColumn: LINK do Cronograma no Sharepoint
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Classificação de Projeto'
+		dataType: string
+		lineageTag: 7a6266fd-7583-48e5-8837-ae6d0b5f1120
+		summarizeBy: none
+		sourceColumn: Classificação de Projeto
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Data Status Report Liderança'
+		dataType: string
+		lineageTag: f41dc989-dfa6-46c9-8161-269398755f56
+		summarizeBy: none
+		sourceColumn: Data Status Report Liderança
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Valor Orçado'
+		dataType: string
+		lineageTag: 64bbb4c4-929a-42ad-ab64-035e99bab475
+		summarizeBy: none
+		sourceColumn: Valor Orçado
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Que valor ou retorno este projeto trará?'
+		dataType: string
+		lineageTag: fc256132-214e-4e31-8905-02215cd86993
+		summarizeBy: none
+		sourceColumn: Que valor ou retorno este projeto trará?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Qual o diferencial estratégico deste projeto?'
+		dataType: string
+		lineageTag: 2659b8f9-9b27-4a55-a790-5cedb101abfd
+		summarizeBy: none
+		sourceColumn: Qual o diferencial estratégico deste projeto?
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'O que será efetivamente entregue?'
+		dataType: string
+		lineageTag: 0ef21b6d-d04d-4bbe-abf1-42a30351bec2
+		summarizeBy: none
+		sourceColumn: O que será efetivamente entregue?
+
+		annotation SummarizationSetBy = Automatic
+
+	column Pagamento
+		dataType: string
+		lineageTag: 6e3c8de3-daf5-48a1-b574-f5077db30818
+		summarizeBy: none
+		sourceColumn: Pagamento
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Campo e Responsável '
+		dataType: string
+		lineageTag: 70bfb03c-c1ea-4c4b-84d6-37965d7c32cd
+		summarizeBy: none
+		sourceColumn: "Campo e Responsável "
+
+		annotation SummarizationSetBy = Automatic
+
+	column Priority
+		dataType: string
+		lineageTag: 104bbb2c-5ca3-41aa-9452-8486e70ab54b
+		summarizeBy: none
+		sourceColumn: Priority
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Área de Negócio'
+		dataType: string
+		lineageTag: 85e108ec-485f-4d7a-af5c-4b64a9c10a85
+		summarizeBy: none
+		sourceColumn: Área de Negócio
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gerente Solicitante-gId'
+		dataType: string
+		lineageTag: cc0b280d-40c7-48ce-885b-aa71e31ee596
+		summarizeBy: none
+		sourceColumn: Gerente Solicitante-gId
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Gerente Solicitante-name'
+		dataType: string
+		lineageTag: 1cd24fb6-5021-4702-8140-e7bd9be1ad2e
+		summarizeBy: none
+		sourceColumn: Gerente Solicitante-name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Projeto Orçado'
+		dataType: string
+		lineageTag: 0bec87f8-4ba0-474b-a1ca-1ceafcbdcd00
+		summarizeBy: none
+		sourceColumn: Projeto Orçado
+
+		annotation SummarizationSetBy = Automatic
+
+	column ProjectLink
+		dataType: string
+		lineageTag: 1ac2cf4d-ce89-49c4-a9d0-6d06f7b0fb60
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: ProjectLink
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 47b46c36-138c-4bf8-aa4e-a3ae54a41161
+		summarizeBy: count
+		sourceColumn: Task Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Name'
+		dataType: string
+		lineageTag: 96d29281-47e6-47fa-80a4-cfaea3ed2e44
+		summarizeBy: none
+		sourceColumn: Task Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Section Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 66a3c48e-a529-4c9e-afd5-de27476d6639
+		summarizeBy: count
+		sourceColumn: Task Section Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Section Name'
+		dataType: string
+		lineageTag: f47a8683-7204-4677-9996-e994d2acbc8f
+		summarizeBy: none
+		sourceColumn: Task Section Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Assignee Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 8e518e7b-d1c2-46ce-b015-c37024f05cf7
+		summarizeBy: none
+		sourceColumn: Task Assignee Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Assignee Name'
+		dataType: string
+		lineageTag: 9f9c0421-df23-4465-ad13-d47a7e3ebc18
+		summarizeBy: none
+		sourceColumn: Task Assignee Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Completed'
+		dataType: string
+		lineageTag: c9d5d0d9-b619-43e4-90c4-0b19b7ac4b75
+		summarizeBy: none
+		sourceColumn: Task Completed
+
+		annotation SummarizationSetBy = Automatic
+
+	column DH_CRIAÇÃO
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: ce87eeda-af60-48b6-b64e-e335e07b86b5
+		summarizeBy: none
+		sourceColumn: DH_CRIAÇÃO
+
+		variation Variation
+			isDefault
+			relationship: 34c47272-df88-4f1e-bb4a-47eb9ec56708
+			defaultHierarchy: LocalDateTable_6266f5d9-2a04-4ed3-8a46-b8e6dc5b1048.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DH_CONCLUSÃO
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: cf01ca80-11c3-4e76-a2ae-acf912018a4e
+		summarizeBy: none
+		sourceColumn: DH_CONCLUSÃO
+
+		variation Variation
+			isDefault
+			relationship: 9895d89c-1a9e-4d89-94a6-5a16c0f9e12f
+			defaultHierarchy: LocalDateTable_86d2a5bb-0c61-4a59-8697-0f6404a3925e.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DH_PRAZO_IN
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 85ce9567-0fde-42fa-8215-4106181637ef
+		summarizeBy: none
+		sourceColumn: DH_PRAZO_IN
+
+		variation Variation
+			isDefault
+			relationship: e48ca209-4f28-42d1-b3ef-d7109cb9c440
+			defaultHierarchy: LocalDateTable_29af88f2-c906-405b-86f9-69d656308d63.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column DH_PRAZO_FIM
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: d8eb6d8e-bc7b-43c8-b857-f3561b8b4a4c
+		summarizeBy: none
+		sourceColumn: DH_PRAZO_FIM
+
+		variation Variation
+			isDefault
+			relationship: 7af8bd36-484f-4125-a92c-bd4d79b2d418
+			defaultHierarchy: LocalDateTable_e3c86a6a-47fe-481a-9561-de825c0fcb80.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GRUPO ANALISTAS TASKS'
+		dataType: string
+		lineageTag: c02649c6-6fea-43cf-8601-545188920114
+		summarizeBy: none
+		sourceColumn: GRUPO ANALISTAS TASKS
+
+		annotation SummarizationSetBy = Automatic
+
+	column DT_INTEGRAÇÃO
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: de4ca3d7-101a-43b8-947c-c60403f97765
+		summarizeBy: none
+		sourceColumn: DT_INTEGRAÇÃO
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column TaskLink
+		dataType: string
+		lineageTag: 9b274f3e-fe5e-4a7f-9e74-c852a7924f1e
+		dataCategory: WebUrl
+		summarizeBy: none
+		sourceColumn: TaskLink
+
+		annotation SummarizationSetBy = Automatic
+
+	column DT_Conclusão_Task
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2cba2ccd-4e50-4fca-9a0f-3554a6b7cedf
+		summarizeBy: none
+		sourceColumn: DT_Conclusão_Task
+
+		variation Variation
+			isDefault
+			relationship: e452b054-2d33-4a7e-946c-5f831924c98e
+			defaultHierarchy: LocalDateTable_f3449ef9-68f2-4941-a8fc-6c0a1a21dacb.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DT_Criação_Task
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: cdd6ab31-3ca5-435d-b429-9b2dab5de178
+		summarizeBy: none
+		sourceColumn: DT_Criação_Task
+
+		variation Variation
+			isDefault
+			relationship: 0b269810-e544-42d6-bd09-b3e81bdf5867
+			defaultHierarchy: LocalDateTable_39b98e90-b492-4a0a-9176-5c28b73a5068.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DT_Prazo_Task
+		dataType: dateTime
+		formatString: Short Date
+		lineageTag: e21834a3-9e9b-4fb7-85ad-332be9b77ab1
+		summarizeBy: none
+		sourceColumn: DT_Prazo_Task
+
+		variation Variation
+			isDefault
+			relationship: c1bb4bb5-04ef-4848-90cb-bd149e9665f5
+			defaultHierarchy: LocalDateTable_8dbbf23a-c628-4793-ad5c-961aabda67af.'Hierarquia de datas'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Classificacao Task Mensal'
+		dataType: string
+		lineageTag: 1a51d05e-bbfb-49f7-a17f-2b13a799e496
+		summarizeBy: none
+		sourceColumn: Classificacao Task Mensal
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Classificacao Task Diária'
+		dataType: string
+		lineageTag: 0b3e2864-eb66-4525-bae5-4910f2c81b25
+		summarizeBy: none
+		sourceColumn: Classificacao Task Diária
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tag Auditoria'
+		dataType: string
+		lineageTag: f6dd8d33-8b61-44f9-a4be-ff6e744b5319
+		summarizeBy: none
+		sourceColumn: Tag Auditoria
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Status'
+		dataType: string
+		lineageTag: d3c66c69-7747-420f-a2cc-80538b3a2997
+		summarizeBy: none
+		sourceColumn: Task Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Due At Status'
+		dataType: string
+		lineageTag: 6ef9dacf-6ae6-4e69-ad3e-d93659f72cbf
+		summarizeBy: none
+		sourceColumn: Task Due At Status
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Pts Metodologia'
+		dataType: string
+		lineageTag: 7945d978-03fc-4585-83e5-2a2926a86d7e
+		summarizeBy: none
+		sourceColumn: Pts Metodologia
+
+		annotation SummarizationSetBy = Automatic
+
+	column '5. Status Text Formatado' = ```
+			
+			VAR s0 = 'F_Asana_Unificado'[Project Current Status Text]
+			VAR s1 = SUBSTITUTE(s0, "Resumo:", "RESUMO:" & UNICHAR(10))
+			VAR s2 = SUBSTITUTE(s1, "Próximos passos", UNICHAR(10) & "PRÓXIMOS PASSOS:" & UNICHAR(10))
+			VAR s3 = SUBSTITUTE(s2, "Resumo Executivo", UNICHAR(10) & "RESUMO EXECUTIVO:" & UNICHAR(10))
+			VAR s4 = SUBSTITUTE(s3, "Pontos principais:", UNICHAR(10) & "PONTOS PRINCIPAIS:" & UNICHAR(10))
+			VAR s5 = SUBSTITUTE(s4, "Tarefas Concluídas", UNICHAR(10) & "TAREFAS CONCLUÍDAS:" & UNICHAR(10))
+			VAR s6 = SUBSTITUTE(s5, "Tarefas em Andamento", UNICHAR(10) & "TAREFAS EM ANDAMENTO:" & UNICHAR(10))
+			VAR s7 = SUBSTITUTE(s6, "Tarefas Futuras", UNICHAR(10) & "TAREFAS FUTURAS:" & UNICHAR(10))
+			VAR s8 = SUBSTITUTE(s7, "Próximos Passos", UNICHAR(10) & "PRÓXIMOS PASSOS:" & UNICHAR(10))
+			RETURN s8
+			
+			
+			```
+		lineageTag: e4cf43d9-377b-4c38-9674-8d384204724f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column DT_ATUALIZAR
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 2a8a4f68-9951-4843-be15-a9d0f823efa8
+		summarizeBy: none
+		sourceColumn: DT_ATUALIZAR
+
+		variation Variation
+			isDefault
+			relationship: bb388e65-6eff-4afd-9936-0578e9f0ef24
+			defaultHierarchy: LocalDateTable_1b362f38-defd-4303-ab4d-ae2d7b50aaa1.'Hierarquia de datas'
+
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column Portifólio
+		dataType: string
+		lineageTag: 99993fc9-07f0-4ba3-b38c-9014a87a9741
+		summarizeBy: none
+		sourceColumn: Portifólio
+
+		annotation SummarizationSetBy = Automatic
+
+	column Documentação
+		dataType: string
+		lineageTag: 0f313c7d-a540-4805-85d8-8e542ec301fc
+		summarizeBy: none
+		sourceColumn: Documentação
+
+		annotation SummarizationSetBy = Automatic
+
+	column Observação
+		dataType: string
+		lineageTag: d66859fd-2607-4319-9dc0-f1a2eedf5d1a
+		summarizeBy: none
+		sourceColumn: Observação
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Equipe Interna'
+		dataType: string
+		lineageTag: 2a3973c1-cc2b-4b36-b4cf-5d1f0b2666b6
+		summarizeBy: none
+		sourceColumn: Equipe Interna
+
+		annotation SummarizationSetBy = Automatic
+
+	column '1 - BUSINESS CASE'
+		dataType: string
+		lineageTag: 5c581059-f805-49a2-b42c-1ad8c6f18aad
+		summarizeBy: none
+		sourceColumn: 1 - BUSINESS CASE
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Tipo de Custo'
+		dataType: string
+		lineageTag: 2e03c862-ce7e-420b-a10d-165467edafd5
+		summarizeBy: none
+		sourceColumn: Tipo de Custo
+
+		annotation SummarizationSetBy = Automatic
+
+	partition F_Asana_Unificado = m
+		mode: import
+		queryGroup: Fatos
+		source = ```
+				let
+				    Fonte = Table.Combine({F_Projetos_Principais, F_Projetos_Backlog, F_Projetos_Pausados,F_Projetos_Priorizados}),
+				    #"Mod. Tipo Col. Datas" = Table.TransformColumnTypes(Fonte,{{"Project Created At", type datetime}, {"Project Modified At", type datetime}, {"Project Due On", type date}, {"Project Start On", type date}, {"Task Created At", type datetime}, {"Task Completed At", type datetime}, {"Task Start On", type datetime}, {"Task Due At", type datetime}, {" Prazo para Entrega ", type date}}),
+				    #"Adc. Status Name" = Table.AddColumn(#"Mod. Tipo Col. Datas", "Status Name", each 
+				        if [Project Current Status Color] = "green" then "Em Dia" 
+				        else if [Project Current Status Color] = "blue" then "Em Espera" 
+				        else if [Project Current Status Color] = "red" then "Em Atraso" 
+				        else if [Project Current Status Color] = "yellow" then "Em Risco" 
+				        else if [Project Current Status Color] = "complete" then "Concluido" 
+				        else "Sem atualização recente"),
+				    #"Adc. Link Projeto" = Table.AddColumn(#"Adc. Status Name", "ProjectLink", each Text.Combine({"https://app.asana.com/0/", Text.From([Project Id]), "/", Text.From([Project Id])})),
+				    #"Adc. Link Tarefa" = Table.AddColumn(#"Adc. Link Projeto", "TaskLink", each Text.Combine({"https://app.asana.com/0/", Text.From([Project Id]), "/", Text.From([Task Id])})),
+				    #"Adc. Equipe STI" = Table.AddColumn(#"Adc. Link Tarefa", "GRUPO ANALISTAS TASKS", each 
+				/*Geraldo Batista*/                         if [Task Assignee Id] = 1201822071972279 then "PMO" else
+				/*Edilson Costa*/                           if [Task Assignee Id] = 1205233743550527 then "PMO" else
+				/*Ana Maria Figueiredo*/                    if [Task Assignee Id] = 1208948352600787 then "PMO" else
+				/*Joice Lima*/                              if [Task Assignee Id] = 1208111748359712 then "PMO" else
+				/*Paulo Medina*/                            if [Task Assignee Id] = 1210381985909611 then "PMO" else
+				/*Mirela Vasconcelos*/                      if [Task Assignee Id] = 1211399551851179 then "PMO" else
+				/*MiMickaio Silva*/                         if [Task Assignee Id] = 1213401043999273 then "PMO" else
+				
+				/*Márcia Lima*/                             if [Task Assignee Id] = 1201837983841260 then "Administrativo" else
+				/*Silas Rodrigues*/                         if [Task Assignee Id] = 1202248640699221 then "Administrativo" else
+				/*Valdênia Melo*/                           if [Task Assignee Id] = 1201839457541360 then "Administrativo" else
+				/*Thyago Travassos*/                        if [Task Assignee Id] = 1206824291950782 then "Administrativo" else
+				/*Renata Lima*/                             if [Task Assignee Id] = 1202729725989572 then "Administrativo" else
+				/*Vinícius Litwak*/                         if [Task Assignee Id] = 1205213572370590 then "Administrativo" else
+				/*Mayara Souza*/                            if [Task Assignee Id] = 1207990966566981 then "Administrativo" else
+				/*Paulo Henrique*/                          if [Task Assignee Id] = 1203170636314232 then "Administrativo" else
+				/*Alder Wesley*/                            if [Task Assignee Id] = 1205751604007912 then "Administrativo" else
+				/*Celso Cunha*/                             if [Task Assignee Id] = 1210948767750354 then "Administrativo" else
+				/*Marcelo Valdemar*/                        if [Task Assignee Id] = 1210936998290912 then "Administrativo" else
+				
+				/*Ana Paula*/                               if [Task Assignee Id] = 1201822072317107 then "Sustentação" else
+				/*henrique siqueira*/                       if [Task Assignee Id] = 1207847124991681 then "Sustentação" else
+				
+				/*Clécia Souza*/                            if [Task Assignee Id] = 1201728774936159 then "Assistencial" else
+				/*Vinícius França*/                         if [Task Assignee Id] = 1201845303169915 then "Assistencial" else
+				/*Ingrid Gouveia*/                          if [Task Assignee Id] = 1206795696350341 then "Assistencial" else
+				
+				/*Roger Araújo*/                            if [Task Assignee Id] = 854158410510145  then "Dev Analytcs" else
+				/*Marclyson*/                               if [Task Assignee Id] = 1207288082282369 then "Dev Analytcs" else
+				/*Geovanna Melo*/                           if [Task Assignee Id] = 1204771660730165 then "Dev Analytcs" else
+				/*Massáro Júnio*/                           if [Task Assignee Id] = 1203458407420904 then "Dev Analytcs" else
+				/*robson.rodrigues@rhp.com.br*/             if [Task Assignee Id] = 1206668685407571 then "Dev Analytcs" else
+				/*robson.rodrigues@rhp.com.br*/             if [Task Assignee Id] = 1207872690301474 then "Dev Analytcs" else
+				/*deivson.santos@rhp.com.br*/               if [Task Assignee Id] = 1204530787760210 then "Dev Analytcs" else
+				/*Gabriel Pereira*/                         if [Task Assignee Id] = 854157907415037  then "Dev Analytcs" else
+				/*MILTON ANDRADE DA SILVA*/                 if [Task Assignee Id] = 1208169205410662 then "Dev Analytcs" else
+				/*Kaio Calas*/                              if [Task Assignee Id] = 1208402203152969 then "Dev Analytcs" else
+				/*cristina.soares@rhp.com.br*/              if [Task Assignee Id] = 1207914205173270 then "Dev Analytcs" else
+				/*andra.andrade@tascomtecnologia.com.br*/   if [Task Assignee Id] = 1205758471882893 then "Dev Analytcs" else
+				/*Vinicius Rocha Maciel*/                   if [Task Assignee Id] = 1211825263935535 then "Dev Analytcs" else
+				
+				/*Ademir Novais*/                           if [Task Assignee Id] = 889117987021133  then "Estratégico" else
+				/*Bartolomeu Jose Araujo Martins Junior*/   if [Task Assignee Id] = 1206011206230683 then "Estratégico" else
+				/*Estevam Alves*/                           if [Task Assignee Id] = 1202099646503093 then "Estratégico" else
+				/*Rosangela Costa*/                         if [Task Assignee Id] = 1202473027654446 then "Estratégico" else
+				/*Shirley Geisa de Oliveira*/               if [Task Assignee Id] = 1202125962195874 then "Estratégico" else
+				/*Valdeck Jr*/                              if [Task Assignee Id] = 1201822072098639 then "Estratégico" else
+				/*Elison Viegas*/                           if [Task Assignee Id] = 1206203581727523 then "Estratégico" else
+				/*Emerson Lira*/                            if [Task Assignee Id] = 1203133835184289 then "Estratégico" else
+				/*Emmanuel Morais*/                         if [Task Assignee Id] = 1203827470130505 then "Estratégico" else
+				/*João Daniel Junqueira da Silva Júnior*/   if [Task Assignee Id] = 1205204587680968 then "Estratégico" else
+				/*Leonardo Lima*/                           if [Task Assignee Id] = 1203133469429921 then "Estratégico" else
+				/*guilherme.freitas@rhp.com.br*/            if [Task Assignee Id] = 1207238511858106 then "Estratégico" else
+				/*Daur*/                                    if [Task Assignee Id] = 1208252484587621 then "Estratégico" else
+				
+				/*Diego Melo*/                              if [Task Assignee Id] = 1202779966875522 then "Infraestrutura" else
+				/*Fabio Barbosa*/                           if [Task Assignee Id] = 1201844464494968 then "Infraestrutura" else
+				/*Eugênio Teixeira*/                        if [Task Assignee Id] = 1203386358652650 then "Infraestrutura" else
+				/*Railton Marinho de Albuquerque Luz*/      if [Task Assignee Id] = 1203361924112319 then "Infraestrutura" else
+				/*Railton Marinho de Albuquerque Luz*/      if [Task Assignee Id] = 1208816396529456 then "Infraestrutura" else
+				/*Adalto Amaral*/                           if [Task Assignee Id] = 1207675794500155 then "Infraestrutura" else
+				/*Renato Santana*/                          if [Task Assignee Id] = 1204777723271204 then "Infraestrutura" else
+				
+				/*Diego Aguiar*/                            if [Task Assignee Id] = 1203601224746406 then "SI" else
+				/*Hyago Felipe Morais da Silva*/            if [Task Assignee Id] = 1206897188677335 then "SI" else
+				/*Pedro Borba*/                             if [Task Assignee Id] = 1208872129486634 then "SI" 
+				
+				/*MEMBROS EXTERNOS DO STI*/                 else "Sem Equipe"
+				    ),
+				    #"Duplicar Col. Final Tarefa" = Table.DuplicateColumn(#"Adc. Equipe STI", "Task Due At", "DT_INTEGRAÇÃO"),
+				    #"Converter Dt_Integração" = Table.TransformColumnTypes(#"Duplicar Col. Final Tarefa",{{"DT_INTEGRAÇÃO", type date}}),
+				    #"Mod. Col. Dt Tarefas" = Table.RenameColumns(#"Converter Dt_Integração",{{"Task Completed At", "DH_CONCLUSÃO"}, {"Task Created At", "DH_CRIAÇÃO"}, {"Task Due At", "DH_PRAZO_FIM"}, {"Task Start On", "DH_PRAZO_IN"}}),
+				    #"Adc. Data Conclusão" = Table.DuplicateColumn(#"Mod. Col. Dt Tarefas", "DH_CONCLUSÃO", "DT_Conclusão_Task"),
+				    #"Adc. Data Criação" = Table.DuplicateColumn(#"Adc. Data Conclusão", "DH_CRIAÇÃO", "DT_Criação_Task"),
+				    #"Adc. Data Prazo" = Table.DuplicateColumn(#"Adc. Data Criação", "DH_PRAZO_FIM", "DT_Prazo_Task"),
+				    #"Trunca Datas Acima" = Table.TransformColumnTypes(#"Adc. Data Prazo",{{"DT_Criação_Task", type date}, {"DT_Prazo_Task", type date}, {"DT_Conclusão_Task", type date}}),
+				    #"Adc. Classificacao Task Mensal" = Table.AddColumn( #"Trunca Datas Acima", "Classificacao Task Mensal", each
+				        if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) = Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+				        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] < [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) = Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+				        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] = [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) = Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+				        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] >= DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) = Date.Month(DateTime.LocalNow()) then "NO PRAZO"
+				        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] < [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) <> Date.Month([DT_Conclusão_Task]) then "NO PRAZO"
+				        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] >= DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) <> Date.Month(DateTime.LocalNow()) then "NO PRAZO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and Date.Month([DT_Prazo_Task]) <> Date.Month([DT_Conclusão_Task]) then "CONCLUIDO COM ATRASO"
+				        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) <> Date.Month(DateTime.LocalNow()) then "ATRASADO"
+				        else if [DT_Prazo_Task] <> null and [DT_Conclusão_Task] = null and [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) and Date.Month([DT_Prazo_Task]) <= Date.Month(DateTime.LocalNow()) then "ATRASADO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Criação_Task] <> null then "CONCLUSÃO SEM PLANEJAMENTO"
+				        else "SEM DATA DE PREVISÃO E DATA DE CONCLUSÃO"
+				    ),
+				    #"Adc. Classificacao Task Diária" = Table.AddColumn( #"Adc. Classificacao Task Mensal", "Classificacao Task Diária", each
+				        if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] < [DT_Prazo_Task] and [DT_Criação_Task] < [DT_Prazo_Task] then "CONCLUÍDO ANTES DO PRAZO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and [DT_Criação_Task] < [DT_Prazo_Task] then "CONCLUÍDO COM ATRASO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] and [DT_Criação_Task] = [DT_Prazo_Task] then "CONCLUÍDO COM ATRASO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] > [DT_Prazo_Task] then "CONCLUÍDO COM ATRASO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] = [DT_Prazo_Task] and [DT_Criação_Task] = [DT_Prazo_Task] then "CONCLUÍDO NO PRAZO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] = [DT_Prazo_Task] and [DT_Criação_Task] < [DT_Prazo_Task] then "CONCLUÍDO NO PRAZO"
+				        else if [DT_Conclusão_Task] <> null and [DT_Conclusão_Task] >= DateTime.Date(DateTime.LocalNow()) and [DT_Criação_Task] <= [DT_Prazo_Task] then "CONCLUÍDO NO PRAZO"
+				        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] = null and [DT_Criação_Task] <> null and [DT_Criação_Task] > DateTime.Date(DateTime.LocalNow()) then "SEM PLANEJAMENTO"
+				        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Criação_Task] <> null and [DT_Criação_Task] > [DT_Prazo_Task] then "EM ATRASO"
+				        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Criação_Task] <> null and [DT_Criação_Task] = [DT_Prazo_Task] then "EM ATRASO"
+				        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) then "EM ATRASO"
+				        else if [DT_Conclusão_Task] = null and [DT_Prazo_Task] <> null and [DT_Criação_Task] <> null and [DT_Criação_Task] < [DT_Prazo_Task] then "EM DIA"
+				        else if [DT_Conclusão_Task] <> null and [DT_Criação_Task] <> null then "CONCLUSÃO SEM PLANEJAMENTO"
+				        else "SEM DATA DE PREVISÃO E DATA DE CONCLUSÃO"
+				    ),
+				    #"Adc. Tag Auditoria" = Table.AddColumn(#"Adc. Classificacao Task Diária", "Tag Auditoria", each 
+				        if [DT_Criação_Task] > [DT_Prazo_Task] and [DT_Prazo_Task] <> null then "CRIAÇÃO RETROATIVO" 
+				        else if [DT_Criação_Task] < [DT_Prazo_Task] and [DT_Prazo_Task] <> null then "CRIAÇÃO PLANEJADA" else null),
+				    #"Adc. Task Status Conclusão" = Table.AddColumn(#"Adc. Tag Auditoria", "Task Status", each if [DH_CONCLUSÃO] <> null then "Concluido" else "Pendente"),
+				    #"Adc. Task Status Prazo" = Table.AddColumn(#"Adc. Task Status Conclusão", "Task Due At Status", each 
+				    if [DT_Prazo_Task] = null and [Task Status] = "Pendente" then "Sem Prazo"
+				    else if [DT_Prazo_Task] < DateTime.Date(DateTime.LocalNow()) and [Task Status] = "Pendente" then "Atrasado"
+				    else if [DT_Prazo_Task] >= DateTime.Date(DateTime.LocalNow()) and [Task Status] = "Pendente" then "No Prazo"
+				    else "Concluída"),
+				    #"Erros Substituídos" = Table.ReplaceErrorValues(#"Adc. Task Status Prazo", {{"Classificacao Task Mensal", ""}}),
+				    #"Erros Substituídos1" = Table.ReplaceErrorValues(#"Erros Substituídos", {{"Classificacao Task Diária", ""}}),
+				    #"Mod. Col. Prazo para Entrega" = Table.TransformColumnTypes(#"Erros Substituídos1",{{" Prazo para Entrega ", type date}}),
+				    #"Adc. Col. Pts Status Metod." = Table.AddColumn(#"Mod. Col. Prazo para Entrega", "Pts Metodologia", each if [#"1 - TAP"] = "Concluído no Prazo" and [#"2 - DEP"] = "Concluído no Prazo" and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo" then 3
+				    else if [#"1 - TAP"] = "Concluído no Prazo"     and [#"2 - DEP"] = "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] <> "Concluído no Prazo"  then 2
+				    else if [#"1 - TAP"] = "Concluído no Prazo"     and [#"2 - DEP"] <> "Concluído no Prazo"    and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo"   then 2
+				    else if [#"1 - TAP"] <> "Concluído no Prazo"    and [#"2 - DEP"] = "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo"   then 2
+				    else if [#"1 - TAP"] = "Concluído no Prazo"     and [#"2 - DEP"] <> "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] <> "Concluído no Prazo"  then 1
+				    else if [#"1 - TAP"] <> "Concluído no Prazo"    and [#"2 - DEP"] <> "Concluído no Prazo"    and [#"3 - Cronograma do Projeto"] = "Concluído no Prazo"   then 1
+				    else if [#"1 - TAP"] <> "Concluído no Prazo"    and [#"2 - DEP"] = "Concluído no Prazo"     and [#"3 - Cronograma do Projeto"] <> "Concluído no Prazo"   then 1
+				    else 0),
+				    #"Adc. Dt. Atualização" = Table.AddColumn(#"Adc. Col. Pts Status Metod.", "DT_ATUALIZAR", each DateTime.LocalNow())
+				in
+				    #"Adc. Dt. Atualização"
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

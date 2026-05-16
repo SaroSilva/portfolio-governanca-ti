@@ -1,0 +1,159 @@
+relationship AutoDetected_5d2a6837-5f41-4e9f-8e09-65b86868116e
+	fromColumn: F_Asana_Unificado.'Project Id'
+	toColumn: D_ProjectName.'Project Id'
+
+relationship 14d6b20b-d91d-4326-9ef4-ae3f49e983c5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: D_Calendar.Date
+	toColumn: LocalDateTable_2f63c8be-77cf-4d24-a6a9-b3fd4ede11f7.Date
+
+relationship feb00d88-54ce-7682-d47a-45ba34fbe621
+	fromColumn: F_Asana_Unificado.DT_INTEGRAÇÃO
+	toColumn: D_Calendar.Date
+
+relationship 782b3ece-9755-82a9-d10a-dd7cc73297a4
+	fromColumn: F_Asana_Unificado.'Task Assignee Id'
+	toColumn: D_TaskAssigneName.'Task Assignee Id'
+
+relationship e452b054-2d33-4a7e-946c-5f831924c98e
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DT_Conclusão_Task
+	toColumn: LocalDateTable_f3449ef9-68f2-4941-a8fc-6c0a1a21dacb.Date
+
+relationship 0b269810-e544-42d6-bd09-b3e81bdf5867
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DT_Criação_Task
+	toColumn: LocalDateTable_39b98e90-b492-4a0a-9176-5c28b73a5068.Date
+
+relationship c1bb4bb5-04ef-4848-90cb-bd149e9665f5
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DT_Prazo_Task
+	toColumn: LocalDateTable_8dbbf23a-c628-4793-ad5c-961aabda67af.Date
+
+relationship 07f0fa82-22bb-47c0-b427-a071929ce920
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.' Prazo para Entrega '
+	toColumn: LocalDateTable_190c92a9-d09c-424c-8328-7caec226b770.Date
+
+relationship 53617b2d-7661-46a8-a128-cc99dfae7567
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.'Project Created At'
+	toColumn: LocalDateTable_880d905c-82e1-4651-af0a-77a5ec21d6ed.Date
+
+relationship 6185d37e-e12c-47e7-aafc-912f29531cfd
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.'Project Modified At'
+	toColumn: LocalDateTable_8b983aad-f738-4811-9804-3f9db6d23c74.Date
+
+relationship 560931c1-5cb6-400a-b6f5-ff917333fffa
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.DH_CRIAÇÃO
+	toColumn: LocalDateTable_52d4e332-0c51-4129-af75-d0adc748c12d.Date
+
+relationship 7cff8c5b-c937-4c61-99e5-f0e3da496114
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.DH_CONCLUSÃO
+	toColumn: LocalDateTable_6cc6f2ba-866e-479c-bd43-1a3bc2e7af06.Date
+
+relationship fd8037f1-3361-463e-bef6-1bbf759f13cc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.DH_PRAZO_IN
+	toColumn: LocalDateTable_b4798519-10d0-48f4-bbea-55a346d25280.Date
+
+relationship f5705c24-31b7-4cfa-b528-ad0138e4528a
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.DH_PRAZO_FIM
+	toColumn: LocalDateTable_9e23ad8f-5ab6-40fd-9f3c-993929be5ae3.Date
+
+relationship 197f216c-aadb-4b03-8c89-4b07a48cf5df
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.DT_Conclusão_Task
+	toColumn: LocalDateTable_63320654-6927-453b-b501-09091e8acf62.Date
+
+relationship 7e503db1-00c4-4e0e-9d1f-83c04944f604
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.DT_Criação_Task
+	toColumn: LocalDateTable_8300f37b-9b63-48d7-8eb9-5615993d13e2.Date
+
+relationship cc566df2-f6cb-4d04-bb23-71f4e01d427c
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'F_Tasks - Diário PMO'.DT_Prazo_Task
+	toColumn: LocalDateTable_13080e9d-fcf6-4dc9-bfe6-530789a9337e.Date
+
+relationship 0dfa0feb-1c96-4d3b-8092-77dff3d0d3a3
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'STI - PMO | Matriz de Riscos'.Modificado
+	toColumn: LocalDateTable_aeaee89c-ad75-40a3-a59d-c7a1e1b2e136.Date
+
+relationship 2f49a7a5-8b18-4d1c-9dd3-21ae7d0d0fdc
+	joinOnDateBehavior: datePartOnly
+	fromColumn: 'STI - PMO | Matriz de Riscos'.Criado
+	toColumn: LocalDateTable_84020fb0-9e85-4a72-94ab-653db4fe33da.Date
+
+relationship AutoDetected_0fea45c9-7c55-4038-9047-a87f2864445a
+	fromColumn: 'F_Tasks - Diário PMO'.'Task Assignee Id'
+	toColumn: D_TaskAssigneName.'Task Assignee Id'
+
+relationship 2b8eb1e6-e098-dfe9-2511-d22a65e67e4c
+	fromColumn: 'F_Tasks - Diário PMO'.DT_INTEGRAÇÃO
+	toColumn: D_Calendar.Date
+
+relationship 3943d542-efe6-82b6-fe95-aa59ed7175c9
+	fromColumn: 'STI - PMO | Matriz de Riscos'.'Prazo para Resolução'
+	toColumn: D_Calendar.Date
+
+relationship b58e7698-82ee-e667-f1dc-f47eb504824f
+	isActive: false
+	fromColumn: 'STI - PMO | Matriz de Riscos'.'Data da Resolução'
+	toColumn: D_Calendar.Date
+
+relationship 93e9fd17-d5e5-f0ee-c2cb-2cad7825ecfa
+	isActive: false
+	fromColumn: 'STI - PMO | Matriz de Riscos'.'Data de Identificação'
+	toColumn: D_Calendar.Date
+
+relationship bb388e65-6eff-4afd-9936-0578e9f0ef24
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DT_ATUALIZAR
+	toColumn: LocalDateTable_1b362f38-defd-4303-ab4d-ae2d7b50aaa1.Date
+
+relationship 4d222c6d-ecba-4e32-a045-18e1e6f0d300
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.'Project Created At'
+	toColumn: LocalDateTable_b4626a5f-b07b-4603-9383-7218304578fc.Date
+
+relationship 844fc7e7-69be-4ce6-80f0-03aa77a7d014
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.'Project Modified At'
+	toColumn: LocalDateTable_fe900835-ad57-4be3-b1b9-99153505a667.Date
+
+relationship 3d868508-14fb-4ba3-a631-8736e1929036
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.'Project Due On'
+	toColumn: LocalDateTable_7c5d012f-f241-49b6-b538-4893f5eb1514.Date
+
+relationship a4965f21-c5a7-4217-83f5-2d589482118d
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.'Project Start On'
+	toColumn: LocalDateTable_58690e47-29e3-4a87-93e3-94d40328b0dc.Date
+
+relationship 34c47272-df88-4f1e-bb4a-47eb9ec56708
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DH_CRIAÇÃO
+	toColumn: LocalDateTable_6266f5d9-2a04-4ed3-8a46-b8e6dc5b1048.Date
+
+relationship 9895d89c-1a9e-4d89-94a6-5a16c0f9e12f
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DH_CONCLUSÃO
+	toColumn: LocalDateTable_86d2a5bb-0c61-4a59-8697-0f6404a3925e.Date
+
+relationship e48ca209-4f28-42d1-b3ef-d7109cb9c440
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DH_PRAZO_IN
+	toColumn: LocalDateTable_29af88f2-c906-405b-86f9-69d656308d63.Date
+
+relationship 7af8bd36-484f-4125-a92c-bd4d79b2d418
+	joinOnDateBehavior: datePartOnly
+	fromColumn: F_Asana_Unificado.DH_PRAZO_FIM
+	toColumn: LocalDateTable_e3c86a6a-47fe-481a-9561-de825c0fcb80.Date
+

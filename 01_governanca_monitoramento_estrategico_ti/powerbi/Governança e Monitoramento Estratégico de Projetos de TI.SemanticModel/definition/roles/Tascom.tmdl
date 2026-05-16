@@ -1,0 +1,5 @@
+role Tascom
+	modelPermission: read
+
+	annotation PBI_Id = b208d53f5ed5446ea5e6e824431c16b1
+

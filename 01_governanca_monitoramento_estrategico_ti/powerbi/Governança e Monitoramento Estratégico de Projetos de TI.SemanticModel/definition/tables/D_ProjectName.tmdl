@@ -1,0 +1,35 @@
+table D_ProjectName
+	lineageTag: 04825e52-b5b6-4c3e-9103-020e786aafb2
+
+	column 'Project Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 28f6ca9f-b69e-40d5-aa2a-ea2e5e53bef9
+		summarizeBy: none
+		sourceColumn: Project Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Project Name'
+		dataType: string
+		lineageTag: b892a7c9-b460-4a27-9773-3dab7c1d7f11
+		summarizeBy: none
+		sourceColumn: Project Name
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_ProjectName = m
+		mode: import
+		queryGroup: Dimenssões
+		source =
+				let
+				    Fonte = Table.Combine({F_Projetos_Principais, F_Projetos_Backlog, F_Projetos_Pausados,F_Projetos_Priorizados}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"Project Id", "Project Name"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas", {"Project Id"})
+				in
+				    #"Duplicatas Removidas"
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+

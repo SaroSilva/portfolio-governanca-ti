@@ -1,0 +1,118 @@
+table D_TaskAssigneName
+	lineageTag: d70d9c91-b31e-4b3a-b2df-b5fa872b11c0
+
+	column 'Task Assignee Id'
+		dataType: int64
+		formatString: 0
+		lineageTag: 387f3397-fedc-47b5-a9d7-702eb5722219
+		summarizeBy: none
+		sourceColumn: Task Assignee Id
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Task Assignee Name'
+		dataType: string
+		lineageTag: cfa60d83-2ec9-476c-8258-d54b626832a3
+		summarizeBy: none
+		sourceColumn: Task Assignee Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'GRUPO ANALISTAS TASKS'
+		dataType: string
+		lineageTag: 83a39371-9d17-4d9e-8b84-83d763190fe6
+		summarizeBy: none
+		sourceColumn: GRUPO ANALISTAS TASKS
+
+		annotation SummarizationSetBy = Automatic
+
+	partition D_TaskAssigneName = m
+		mode: import
+		queryGroup: Dimenssões
+		source = ```
+				let
+				    Fonte = Table.Combine({F_Projetos_Principais, F_Projetos_Backlog, F_Projetos_Pausados,F_Projetos_Priorizados}),
+				    #"Outras Colunas Removidas" = Table.SelectColumns(Fonte,{"Task Assignee Id", "Task Assignee Name"}),
+				    #"Duplicatas Removidas" = Table.Distinct(#"Outras Colunas Removidas", {"Task Assignee Id"}),
+				    #"Tipo Alterado" = Table.TransformColumnTypes(#"Duplicatas Removidas",{{"Task Assignee Id", Int64.Type}}),
+				    #"Adc. Equipe STI" = Table.AddColumn(#"Tipo Alterado", "GRUPO ANALISTAS TASKS", each 
+				/*Geraldo Batista*/                         if [Task Assignee Id] = 1201822071972279 then "PMO" else
+				/*Edilson Costa*/                           if [Task Assignee Id] = 1205233743550527 then "PMO" else
+				/*Ana Maria Figueiredo*/                    if [Task Assignee Id] = 1208948352600787 then "PMO" else
+				/*Joice Lima*/                              if [Task Assignee Id] = 1208111748359712 then "PMO" else
+				/*Paulo Medina*/                            if [Task Assignee Id] = 1210381985909611 then "PMO" else
+				/*Mirela Vasconcelos*/                      if [Task Assignee Id] = 1211399551851179 then "PMO" else
+				/*MiMickaio Silva*/                         if [Task Assignee Id] = 1213401043999273 then "PMO" else
+				
+				/*Márcia Lima*/                             if [Task Assignee Id] = 1201837983841260 then "Administrativo" else
+				/*Silas Rodrigues*/                         if [Task Assignee Id] = 1202248640699221 then "Administrativo" else
+				/*Valdênia Melo*/                           if [Task Assignee Id] = 1201839457541360 then "Administrativo" else
+				/*Thyago Travassos*/                        if [Task Assignee Id] = 1206824291950782 then "Administrativo" else
+				/*Renata Lima*/                             if [Task Assignee Id] = 1202729725989572 then "Administrativo" else
+				/*Vinícius Litwak*/                         if [Task Assignee Id] = 1205213572370590 then "Administrativo" else
+				/*Mayara Souza*/                            if [Task Assignee Id] = 1207990966566981 then "Administrativo" else
+				/*Paulo Henrique*/                          if [Task Assignee Id] = 1203170636314232 then "Administrativo" else
+				/*Alder Wesley*/                            if [Task Assignee Id] = 1205751604007912 then "Administrativo" else
+				/*Celso Cunha*/                             if [Task Assignee Id] = 1210948767750354 then "Administrativo" else
+				/*Marcelo Valdemar*/                        if [Task Assignee Id] = 1210936998290912 then "Administrativo" else
+				
+				/*Ana Paula*/                               if [Task Assignee Id] = 1201822072317107 then "Sustentação" else
+				/*henrique siqueira*/                       if [Task Assignee Id] = 1207847124991681 then "Sustentação" else
+				
+				/*Clécia Souza*/                            if [Task Assignee Id] = 1201728774936159 then "Assistencial" else
+				/*Vinícius França*/                         if [Task Assignee Id] = 1201845303169915 then "Assistencial" else
+				/*Ingrid Gouveia*/                          if [Task Assignee Id] = 1206795696350341 then "Assistencial" else
+				
+				/*Roger Araújo*/                            if [Task Assignee Id] = 854158410510145  then "Dev Analytcs" else
+				/*Marclyson*/                               if [Task Assignee Id] = 1207288082282369 then "Dev Analytcs" else
+				/*Geovanna Melo*/                           if [Task Assignee Id] = 1204771660730165 then "Dev Analytcs" else
+				/*Massáro Júnio*/                           if [Task Assignee Id] = 1203458407420904 then "Dev Analytcs" else
+				/*robson.rodrigues@rhp.com.br*/             if [Task Assignee Id] = 1206668685407571 then "Dev Analytcs" else
+				/*robson.rodrigues@rhp.com.br*/             if [Task Assignee Id] = 1207872690301474 then "Dev Analytcs" else
+				/*deivson.santos@rhp.com.br*/               if [Task Assignee Id] = 1204530787760210 then "Dev Analytcs" else
+				/*Gabriel Pereira*/                         if [Task Assignee Id] = 854157907415037  then "Dev Analytcs" else
+				/*MILTON ANDRADE DA SILVA*/                 if [Task Assignee Id] = 1208169205410662 then "Dev Analytcs" else
+				/*Kaio Calas*/                              if [Task Assignee Id] = 1208402203152969 then "Dev Analytcs" else
+				/*cristina.soares@rhp.com.br*/              if [Task Assignee Id] = 1207914205173270 then "Dev Analytcs" else
+				/*andra.andrade@tascomtecnologia.com.br*/   if [Task Assignee Id] = 1205758471882893 then "Dev Analytcs" else
+				/*Vinicius Rocha Maciel*/                   if [Task Assignee Id] = 1211825263935535 then "Dev Analytcs" else
+				
+				/*Ademir Novais*/                           if [Task Assignee Id] = 889117987021133  then "Estratégico" else
+				/*Bartolomeu Jose Araujo Martins Junior*/   if [Task Assignee Id] = 1206011206230683 then "Estratégico" else
+				/*Estevam Alves*/                           if [Task Assignee Id] = 1202099646503093 then "Estratégico" else
+				/*Rosangela Costa*/                         if [Task Assignee Id] = 1202473027654446 then "Estratégico" else
+				/*Shirley Geisa de Oliveira*/               if [Task Assignee Id] = 1202125962195874 then "Estratégico" else
+				/*Valdeck Jr*/                              if [Task Assignee Id] = 1201822072098639 then "Estratégico" else
+				/*Elison Viegas*/                           if [Task Assignee Id] = 1206203581727523 then "Estratégico" else
+				/*Emerson Lira*/                            if [Task Assignee Id] = 1203133835184289 then "Estratégico" else
+				/*Emmanuel Morais*/                         if [Task Assignee Id] = 1203827470130505 then "Estratégico" else
+				/*João Daniel Junqueira da Silva Júnior*/   if [Task Assignee Id] = 1205204587680968 then "Estratégico" else
+				/*Leonardo Lima*/                           if [Task Assignee Id] = 1203133469429921 then "Estratégico" else
+				/*guilherme.freitas@rhp.com.br*/            if [Task Assignee Id] = 1207238511858106 then "Estratégico" else
+				/*Daur*/                                    if [Task Assignee Id] = 1208252484587621 then "Estratégico" else
+				
+				/*Diego Melo*/                              if [Task Assignee Id] = 1202779966875522 then "Infraestrutura" else
+				/*Fabio Barbosa*/                           if [Task Assignee Id] = 1201844464494968 then "Infraestrutura" else
+				/*Eugênio Teixeira*/                        if [Task Assignee Id] = 1203386358652650 then "Infraestrutura" else
+				/*Railton Marinho de Albuquerque Luz*/      if [Task Assignee Id] = 1203361924112319 then "Infraestrutura" else
+				/*Railton Marinho de Albuquerque Luz*/      if [Task Assignee Id] = 1208816396529456 then "Infraestrutura" else
+				/*Adalto Amaral*/                           if [Task Assignee Id] = 1207675794500155 then "Infraestrutura" else
+				/*Renato Santana*/                          if [Task Assignee Id] = 1204777723271204 then "Infraestrutura" else
+				
+				/*Diego Aguiar*/                            if [Task Assignee Id] = 1203601224746406 then "SI" else
+				/*Hyago Felipe Morais da Silva*/            if [Task Assignee Id] = 1206897188677335 then "SI" else
+				/*Pedro Borba*/                             if [Task Assignee Id] = 1208872129486634 then "SI" 
+				
+				/*MEMBROS EXTERNOS DO STI*/                 else "Sem Equipe"
+				    ),
+				    #"Linhas Classificadas" = Table.Sort(#"Adc. Equipe STI",{{"GRUPO ANALISTAS TASKS", Order.Ascending}, {"Task Assignee Name", Order.Ascending}}),
+				    #"Linhas Filtradas" = Table.SelectRows(#"Linhas Classificadas", each [Task Assignee Id] <> null and [Task Assignee Id] <> ""),
+				    #"Duplicatas Removidas1" = Table.Distinct(#"Linhas Filtradas", {"Task Assignee Id"})
+				in
+				    #"Duplicatas Removidas1"
+				```
+
+	annotation PBI_NavigationStepName = Navegação
+
+	annotation PBI_ResultType = Table
+
